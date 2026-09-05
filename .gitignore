@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+build/
+dist/
+search/target/
+artifacts/
+*.cnf
+*.log
+*.lrat
+*.drat
+.DS_Store
