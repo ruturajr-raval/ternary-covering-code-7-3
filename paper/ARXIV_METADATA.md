@@ -52,4 +52,4 @@ Upload the LaTeX source and only the files required to compile it. The paper use
 
 ## Data And Code
 
-The accompanying source repository contains the independent Rust and C++20 subcore verifiers, the Python and Rust full-core verifiers, retained near-cover data, exact manifests, tests, and replay commands. Cite the versioned repository release together with its archival DOI when those identifiers are assigned.
+The accompanying source repository contains the independent Rust and C++20 subcore verifiers, the Python and Rust full-core verifiers, retained near-cover data, exact manifests, tests, and replay commands. Cite GitHub release `v0.2.0` together with the Zenodo version DOI `10.5281/zenodo.22452733`.
