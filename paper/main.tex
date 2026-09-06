@@ -18,7 +18,11 @@
   colorlinks=true,
   linkcolor=blue!55!black,
   citecolor=blue!55!black,
-  urlcolor=blue!55!black
+  urlcolor=blue!55!black,
+  pdftitle={Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K3(7,3)},
+  pdfauthor={Ruturaj R Raval},
+  pdfsubject={Exact computational coding theory and finite covering codes},
+  pdfkeywords={covering codes, ternary codes, coding theory, extremal combinatorics, computer-assisted proof}
 ]{hyperref}
 
 \newtheorem{theorem}{Theorem}
@@ -601,7 +605,7 @@ The two primary verification paths can be run separately:
 
 \begin{Verbatim}[fontsize=\small]
 SEVEN_CORE_DIRECT_WORKERS=1 \
-  cargo run --release --manifest-path search/Cargo.toml \
+  cargo run --locked --release --manifest-path search/Cargo.toml \
   --bin seven_core_direct
 
 make build/seven-core-independent

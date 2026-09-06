@@ -19,13 +19,13 @@
     "limitations_documented": true,
     "technical_report_ready": true,
     "multi_reviewer_audit_completed": true,
-    "clean_commit_ci_passes": false,
+    "clean_commit_ci_passes": true,
     "public_release_created": false,
     "zenodo_version_doi_assigned": false,
     "external_review_completed": false
   },
-  "artifact_decision": "hold_until_clean_commit_ci",
+  "artifact_decision": "ready_for_public_release",
   "technical_report_decision": "ready",
-  "theorem_announcement_decision": "hold_until_release_gates_pass",
-  "reason": "The scoped theorem, independent finite verifiers, technical report, exact staged manifest, archive replay, and multi-review audit pass. Clean hosted CI, the public release, and Zenodo archival remain to be completed."
+  "theorem_announcement_decision": "hold_until_public_release_and_archival",
+  "reason": "The scoped theorem, independent finite verifiers, technical report, exact staged manifest, archive replay, multi-review audit, and clean hosted CI run 34001460508 pass. The public release and Zenodo archival remain to be completed."
 }
