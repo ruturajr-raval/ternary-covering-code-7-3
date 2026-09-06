@@ -1,0 +1,760 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{url}
+\usepackage[
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black
+]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Hspace}{\mathcal{H}}
+\newcommand{\Uncov}{\mathcal{U}}
+\newcommand{\dist}{d_{\mathrm H}}
+\newcommand{\codeword}[1]{\texttt{#1}}
+
+\title{Seven-Word Subcore Exclusions and a Six-Hole Plateau\\
+in the Ternary Covering Problem \(K_3(7,3)\)}
+\author{%
+  Ruturaj R Raval\\
+  \small Independent Researcher\\
+  \small ORCID:
+  \href{https://orcid.org/0000-0003-4930-8981}
+       {\texttt{0000-0003-4930-8981}}
+}
+\date{September 6, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Let \(K_3(7,3)\) be the minimum cardinality of a radius-three covering
+code in the ternary Hamming space \(\{0,1,2\}^7\).  The established global
+interval remains \(11 \leq K_3(7,3) \leq 12\).  This report proves a scoped
+structural exclusion based on an explicit eight-word core \(C\).  For each
+\(c\in C\), every set of at most four centers added to the seven-word
+subcore \(C\setminus\{c\}\) leaves at least six words uncovered, and
+equality is attained.  Consequently, no covering code of size at most
+eleven contains any of these eight subcores or an isometric copy.  The
+order-18 stabilizer of \(C\) reduces the eight deletions to four
+representatives.  Independent Rust and C++20 verifiers solve all four
+completion problems by exact pair reduction, building \(9{,}500{,}440\)
+pair entries and querying \(347{,}365\) eligible first pairs.  The full
+eight-word core is also classified exactly: its three-center minimum is
+six, attained by eight triples in four stabilizer classes.  Exact local
+replacement results and a direct diameter bound provide further structural
+constraints.  The global interval is unchanged.
+\end{abstract}
+
+\section{Introduction}
+
+A \(q\)-ary covering code is a set of words whose Hamming balls cover the
+entire ambient Hamming space.  The quantity \(K_q(n,R)\) denotes the
+minimum number of centers needed to cover \(\{0,\ldots,q-1\}^n\) with
+balls of radius \(R\).  Covering codes connect coding theory, extremal
+combinatorics, finite geometry, dominating-set problems, and exact
+optimization.
+
+This report concerns the unresolved ternary value \(K_3(7,3)\).  K\'eri's
+covering-code table records
+\[
+  11 \leq K_3(7,3) \leq 12
+\]
+\cite{keri-table}.  The associated change log dates the computer-derived
+lower bound \(K_3(7,3)\geq 11\) to October 22, 2008
+\cite{keri-log}.  Earlier ternary constructions and covering-code tables
+include the work of H\"am\"al\"ainen and Rankinen
+\cite{hamalainen-rankinen-1991} and of
+\"Osterg{\aa}rd and H\"am\"al\"ainen
+\cite{ostergard-hamalainen-1997}.  Recent semidefinite lower-bound
+techniques provide broader context but do not supersede the integer lower
+bound eleven in this cell \cite{gijswijt-polak-2026}.
+
+The main result here is not a global bound improvement.  Instead, it
+identifies eight explicit seven-word subcores that cannot occur inside any
+size-at-most-eleven cover, determines all optimal three-center completions
+of their common eight-word parent core, and describes an exact local
+replacement plateau around four resulting near-covers.  The distinction
+between global and scoped statements is maintained throughout:
+
+\begin{itemize}[leftmargin=2em]
+  \item The interval \(11 \leq K_3(7,3) \leq 12\) is a global fact.
+  \item The subcore exclusion is complete for eight explicit seven-word
+        sets and every isometric copy of each set.
+  \item The full-core completion result is complete for one explicit
+        eight-word set.
+  \item The replacement results are complete for four specified
+        near-cover classes.
+  \item No classification of all eleven-word codes or all six-hole
+        near-covers is claimed.
+\end{itemize}
+
+\section{Definitions and notation}
+
+Let
+\[
+  \Hspace=\{0,1,2\}^7.
+\]
+For \(x,y\in\Hspace\), the Hamming distance is
+\[
+  \dist(x,y)=\left|\{i:x_i\neq y_i\}\right|.
+\]
+For a nonempty set \(D\subseteq\Hspace\), write
+\[
+  \dist(x,D)=\min_{d\in D}\dist(x,d)
+\]
+and define its radius-three uncovered set by
+\[
+  \Uncov(D)=\{x\in\Hspace:\dist(x,D)>3\}.
+\]
+Thus \(D\) is a radius-three covering code exactly when
+\(\Uncov(D)=\varnothing\).
+
+The ambient space has
+\[
+  |\Hspace|=3^7=2187
+\]
+words.  Every radius-three Hamming ball has
+\[
+  \sum_{i=0}^{3}\binom{7}{i}2^i
+  =1+14+84+280
+  =379
+\]
+words.
+
+An isometry of \(\Hspace\) is generated by a permutation of the seven
+coordinates and independent permutations of the three symbols in each
+coordinate.  Such maps preserve Hamming distance, covering radius,
+uncovered-set cardinality, and code cardinality.
+
+\section{The core and its seven-word subcores}
+
+Consider the following eight-word set:
+\[
+\begin{split}
+C=\{&
+\codeword{0000011},
+\codeword{0000102},
+\codeword{0000220},
+\codeword{0002121},\\
+&
+\codeword{1111022},
+\codeword{1111110},
+\codeword{1111201},
+\codeword{2222000}
+\}.
+\end{split}
+\]
+Direct enumeration gives
+\[
+  |\Uncov(C)|=253.
+\]
+
+For each \(c\in C\), define
+\[
+  S_c=C\setminus\{c\}.
+\]
+The stabilizer of \(C\) has order 18.  Its action on the eight choices of
+\(c\) has four orbits, shown in Table \ref{tab:deletion-orbits}.
+
+\begin{table}[htbp]
+\centering
+\caption{Deletion orbits and exact four-center completion results.}
+\label{tab:deletion-orbits}
+\begin{tabular}{l
+                >{\centering\arraybackslash}p{1.3cm}
+                >{\centering\arraybackslash}p{1.7cm}
+                >{\centering\arraybackslash}p{1.7cm}
+                >{\centering\arraybackslash}p{2.0cm}
+                >{\centering\arraybackslash}p{1.5cm}}
+\toprule
+Representative \(c\) &
+Orbit size &
+\(|\Uncov(S_c)|\) &
+Pair threshold &
+Eligible first pairs &
+Minimum residual\\
+\midrule
+\codeword{0000011} & 3 & 370 & 183 & 86,319 & 6\\
+\codeword{0002121} & 1 & 358 & 177 & 81,290 & 6\\
+\codeword{1111022} & 3 & 396 & 196 & 82,464 & 6\\
+\codeword{2222000} & 1 & 518 & 257 & 97,292 & 6\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{theorem}[Seven-word subcore exclusion]
+\label{thm:seven-core}
+For every \(c\in C\) and every \(T\subseteq\Hspace\) with \(|T|\leq 4\),
+\[
+  |\Uncov(S_c\cup T)|\geq 6.
+\]
+Equality is attained for every \(c\).
+\end{theorem}
+
+\begin{proof}
+It is enough to solve one deletion from each of the four stabilizer orbits.
+Fix a representative \(c\), let \(h=|\Uncov(S_c)|\), and suppose first that
+four added centers cover all but at most five of these \(h\) holes.
+
+There are six unordered pairs among the four centers.  Every covered hole
+belongs to at least three pair unions.  Indeed, a hole covered by exactly
+one center belongs to the three pairs containing that center, and coverage
+by additional centers can only increase the number of pair unions
+containing it.  Therefore the sum of the six pair-union coverage counts is
+at least
+\[
+  3(h-5).
+\]
+Some pair must cover at least
+\[
+  \left\lceil\frac{h-5}{2}\right\rceil
+\]
+holes.
+
+Each representative has \(2187-7=2180\) allowed added centers and
+\[
+  \binom{2180}{2}=2{,}375{,}110
+\]
+unordered candidate pairs.  The verifier builds every pair-coverage mask,
+retains every first pair meeting the displayed averaging threshold, and
+queries all complementary pair masks for a union leaving at most five
+holes.  The thresholds and retained first-pair counts are listed in Table
+\ref{tab:deletion-orbits}.  Across the four representatives, the
+calculation builds \(9{,}500{,}440\) pair entries and queries \(347{,}365\)
+eligible first pairs.  No residual-at-most-five completion exists.
+
+The Rust implementation permits overlapping pair witnesses and pads any
+found union to four distinct centers before accepting it.  The independent
+C++20 implementation requires the complementary pairs to be disjoint and
+reconstructs the stabilizer separately.  Both implementations reproduce
+all counts in Table \ref{tab:deletion-orbits}.
+
+For each representative \(c\), the four additions
+\[
+  \{c,\codeword{1112212},\codeword{2220121},\codeword{2221212}\}
+\]
+leave exactly six holes, so the lower bound is attained.  A set of fewer
+than four added centers can be augmented with distinct centers without
+increasing its residual.  Stabilizer isometries transfer the result and
+the equality witnesses to every member of each deletion orbit.
+\end{proof}
+
+\begin{corollary}[Exclusion from size-at-most-eleven covers]
+\label{cor:seven-exclusion}
+No radius-three covering code \(D\subseteq\Hspace\) with \(|D|\leq 11\)
+contains any \(S_c\).  The same statement holds for every isometric copy of
+every \(S_c\).
+\end{corollary}
+
+\begin{proof}
+If \(S_c\subseteq D\) and \(|D|\leq 11\), then
+\(T=D\setminus S_c\) has at most four elements.  Theorem
+\ref{thm:seven-core} gives \(|\Uncov(D)|\geq 6\), contradicting that \(D\)
+is a cover.  Isometries preserve all distances and cardinalities.
+\end{proof}
+
+For each displayed representative, the equality witness in the proof
+leaves the same six words:
+\[
+\begin{split}
+J=\{&
+\codeword{0011000},
+\codeword{0101000},
+\codeword{0110000},\\
+&
+\codeword{1001000},
+\codeword{1010000},
+\codeword{1100000}
+\}.
+\end{split}
+\]
+
+\begin{remark}[Scope]
+Corollary \ref{cor:seven-exclusion} eliminates eight complete isometry
+families of candidate substructures.  It does not eliminate an eleven-word
+cover containing none of these seven-word subcores.
+\end{remark}
+
+\section{Exact completion of the eight-word core}
+
+There are \(2187-8=2179\) possible added centers outside \(C\).
+
+\begin{theorem}[Exact three-center completion of \(C\)]
+\label{thm:core}
+For every \(T\subseteq\Hspace\setminus C\) with \(|T|\leq 3\),
+\[
+  |\Uncov(C\cup T)|\geq 6.
+\]
+Equality is attained.  Among sets \(T\) of cardinality three, exactly
+eight unordered triples attain equality.
+\end{theorem}
+
+\begin{proof}
+For each of the 2179 allowed centers, the verifier constructs its exact
+coverage mask on the 253 points of \(\Uncov(C)\).  The direct Rust
+verifier enumerates every strictly ordered index triple, so each
+unordered triple is processed once.  The number processed is
+\[
+  \binom{2179}{3}=1{,}721{,}956{,}929.
+\]
+For every triple it forms the union of the three coverage masks and
+counts the residual points.  The minimum residual is six, and the second
+enumeration pass returns exactly eight distinct minimizing triples.
+
+An independent Python verifier reconstructs \(\Hspace\), all radius-three
+balls, \(C\), and \(\Uncov(C)\) separately.  It groups centers only when
+their exact coverage masks on the current finite hole set are identical.
+The decision search and the complete minimizer expansion return the same
+minimum and the same eight unordered triples.  Grouping equal masks
+changes only the number of repeated bit operations, not the set of
+candidate centers represented.
+
+The exhaustive triple result also covers sets of fewer than three added
+centers.  Any such set can be augmented to three distinct allowed
+centers.  Adding centers can only decrease the uncovered set.  Since
+every augmented triple still leaves at least six points, the original
+set leaves at least six points as well.
+\end{proof}
+
+The eight minimizing triples are:
+\[
+\begin{array}{lll}
+\codeword{1112212} & \codeword{2220111} & \codeword{2221222}\\
+\codeword{1112212} & \codeword{2220121} & \codeword{2221212}\\
+\codeword{1112212} & \codeword{2220122} & \codeword{2221211}\\
+\codeword{1112212} & \codeword{2220212} & \codeword{2221121}\\
+\codeword{1112212} & \codeword{2220221} & \codeword{2221112}\\
+\codeword{1121212} & \codeword{2212212} & \codeword{2220121}\\
+\codeword{1211212} & \codeword{2122212} & \codeword{2220121}\\
+\codeword{1222212} & \codeword{2111212} & \codeword{2220121}.
+\end{array}
+\]
+
+\begin{remark}[Additional classification]
+Theorem \ref{thm:seven-core} already excludes \(C\), since every set
+containing \(C\) contains each of its seven-word subcores.  Theorem
+\ref{thm:core} adds information not supplied by that exclusion: it
+determines all optimal three-center additions to the full core.
+\end{remark}
+
+\section{A direct diameter bound}
+
+The subcore and full-core theorems are computational.  The following
+independent result is a short counting argument.
+
+\begin{proposition}[Diameter at most four requires seventeen centers]
+\label{prop:diameter}
+Every ternary length-seven code with covering radius at most three and
+diameter at most four has at least seventeen centers.
+\end{proposition}
+
+\begin{proof}
+Translate one code center to \(\codeword{0000000}\).  Translation is an
+isometry, and the diameter assumption implies that every other center
+has Hamming weight at most four.
+
+Consider the 128 full-support words
+\[
+  F=\{1,2\}^7.
+\]
+A center of weight at most three is at distance at least four from every
+word of \(F\), so it covers none of them at radius three.  A center of
+weight four covers a word of \(F\) only when the four nonzero symbols
+agree on the center's support.  The remaining three symbols are free.
+Consequently, each weight-four center covers exactly \(2^3=8\) words of
+\(F\).  The translated zero center covers none of \(F\).  Therefore
+\[
+  128\leq 8(|D|-1),
+\]
+which gives \(|D|\geq 17\).
+\end{proof}
+
+\begin{corollary}
+Every radius-three ternary length-seven cover with at most sixteen
+centers has diameter five, six, or seven.
+\end{corollary}
+
+This statement is global: it applies to every code under its hypotheses.
+It does not by itself distinguish between sizes eleven and twelve.
+
+\section{Four six-hole near-cover classes}
+
+Each of the eight triples in Theorem \ref{thm:core} produces an
+eleven-word code with exactly six uncovered words.  In the normalization
+used by the verifier, the common uncovered set is the set \(J\) displayed
+after Theorem \ref{thm:seven-core}.
+On the first four coordinates these are the binary weight-two words, so
+the induced geometry is the Johnson graph \(J(4,2)\); the final three
+coordinates are zero.
+
+The stabilizer of \(C\) within the normalized hole stabilizer has order
+18.  Its action partitions the eight minimizing triples into four
+orbits.  Representatives are shown in Table \ref{tab:tails}.
+
+\begin{table}[htbp]
+\centering
+\caption{Representative three-word tails.  Each row, joined with \(C\),
+leaves exactly the six words in \(J\) uncovered.}
+\label{tab:tails}
+\begin{tabular}{c@{\qquad}lll}
+\toprule
+Class & \multicolumn{3}{c}{Tail \(T\)}\\
+\midrule
+A & \codeword{1112212} & \codeword{2220121} & \codeword{2221212}\\
+B & \codeword{1121212} & \codeword{2212212} & \codeword{2220121}\\
+C & \codeword{1112212} & \codeword{2220111} & \codeword{2221222}\\
+D & \codeword{1112212} & \codeword{2220212} & \codeword{2221121}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Exact code-hole canonicalization under coordinate and coordinatewise
+symbol permutations proves that these four representatives are mutually
+non-isometric.  Equivalently, the four retained eleven-word near-covers
+belong to four distinct isometry classes.  This is a statement about the
+retained and normalized configurations, not a proof that every
+six-hole eleven-word near-cover belongs to one of these classes.
+
+\section{Exact replacement neighborhoods}
+
+For an eleven-word code \(D\), a \emph{strict one-center replacement}
+removes one center of \(D\) and adds one center from
+\(\Hspace\setminus D\).  A \emph{strict two-center replacement} removes
+two centers of \(D\) and adds two distinct centers from
+\(\Hspace\setminus D\).  The replacement code is required to have
+eleven distinct centers.
+
+For each class in Table \ref{tab:tails}, the Python verifier exhaustively
+determines:
+
+\begin{itemize}[leftmargin=2em]
+  \item the minimum number of uncovered words after a strict one-center
+        replacement;
+  \item the minimum after a strict two-center replacement;
+  \item every strict two-center replacement that preserves the
+        six-hole residual; and
+  \item the isometry class of every such six-hole neighbor.
+\end{itemize}
+
+The results are in Table \ref{tab:replacements}.
+
+\begin{table}[htbp]
+\centering
+\caption{Exact strict replacement results.  The final column gives the
+number of six-hole neighbor incidences by target class.}
+\label{tab:replacements}
+\begin{tabular}{c
+                >{\centering\arraybackslash}p{2.1cm}
+                >{\centering\arraybackslash}p{2.1cm}
+                >{\centering\arraybackslash}p{1.8cm}
+                l}
+\toprule
+Class &
+Best one-center residual &
+Best two-center residual &
+Six-hole neighbors &
+Target classes\\
+\midrule
+A & 15 & 6 & 14 & \(B:6,\ C:6,\ D:2\)\\
+B & 15 & 6 &  6 & \(A:2,\ B:4\)\\
+C & 18 & 6 &  5 & \(A:2,\ C:2,\ D:1\)\\
+D & 15 & 6 &  5 & \(A:2,\ C:3\)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For each source class, there are
+\[
+  \binom{11}{2}\binom{2176}{2}=130{,}152{,}000
+\]
+raw strict two-center replacement candidates.  Across the four source
+classes, the exact finite search therefore represents
+\[
+  520{,}608{,}000
+\]
+raw candidates.  Coverage-mask classes reduce repeated work while
+retaining every center pair represented by each mask pair.
+
+The strict one-center minima show that no single strict replacement
+stays on the six-hole plateau.  Strict two-center replacement can remain
+on the plateau, and the 30 source-neighbor incidences in Table
+\ref{tab:replacements} give its directed local adjacency.  No strict
+one-center or strict two-center replacement of these four
+representatives produces fewer than six uncovered words.
+
+\section{Verification design}
+
+\subsection{Independent geometry reconstruction}
+
+The Rust, C++20, and Python implementations generate all 2187 ternary
+words from integer encodings and compute Hamming distance directly.  The
+two primary subcore verifiers separately reconstruct the eight-word core,
+its stabilizer, the deletion orbits, all four residual spaces, and every
+candidate-center coverage mask.
+
+\subsection{Exact Rust pair reduction}
+
+The Rust subcore verifier builds all 2,375,110 unordered pair unions for
+each representative.  A binary mask tree stores subtree intersections and
+unions, allowing exact rejection or acceptance of a complementary-pair
+query without scanning every leaf.  The averaging lemma determines the
+complete first-pair query set.
+
+The Rust query permits pair overlap.  If a complementary pair is found,
+the union is padded to four distinct centers and its actual residual is
+recomputed before acceptance.  The test suite compares this complete
+pipeline with direct four-set enumeration on 6,480 deterministic synthetic
+instances.
+
+\subsection{Independent C++20 pair reduction}
+
+The C++20 verifier does not import Rust orbit or pair-index data.  It
+reconstructs the order-18 stabilizer from Hamming isometries, builds a
+different pair tree, and queries only disjoint complementary pairs.  Its
+finite controls perform 21,504 pair-index queries and 70 direct four-center
+checks.  Additional boundary controls increase these totals to 27,984
+pair-index queries and 140 direct four-center sets, including 63-, 64-, and
+65-bit residual masks.  It independently reproduces the exclusion result
+and all theorem-defining counts from the Rust implementation.  The published
+residual-six equality witness is supplied to both implementations and
+verified directly rather than discovered independently.
+
+\subsection{Direct Rust triple scan}
+
+The separate full-core Rust verifier stores the 253 core holes in four
+machine-word blocks.
+It excludes the eight core centers, builds one exact hole-coverage mask
+for each allowed center, and executes three nested loops over strictly
+increasing candidate indices.  It checks the expected combinatorial
+count before accepting the result.  A second complete pass enumerates
+all triples attaining the computed minimum and verifies that there are
+exactly eight.
+
+The scan is deterministic.  Work may be partitioned among threads by the
+first triple index, but worker count does not alter the candidate set,
+ordering, minimum, or final sorted minimizer list.  A single-worker run
+is included as the simplest replay.
+
+\subsection{Exact Python mask-class enumeration}
+
+The Python verifier represents subsets of \(\Hspace\) as integer
+bitmasks.  For the core-completion problem, it groups candidate centers
+by their exact coverage mask on the current residual set.  It first
+proves that no triple has residual at most five, then expands every
+mask-class combination at residual six to recover the complete set of
+center triples.
+
+The same exact-mask principle is used for two-center replacement
+neighborhoods.  The test suite compares mask-pair pruning with direct
+enumeration on all \(65{,}536\) four-mask synthetic instances and checks
+the three-center decision routine against independent exhaustive
+controls.
+
+In continuous integration, the one-worker Rust output, parallel Rust
+output, and C++20 output are parsed and compared field by field with the
+checked machine-readable result record.  This binds the published orbit
+members, counts, drift checks, minima, and witnesses to fresh verifier
+executions.
+
+\subsection{CNF availability and claim boundary}
+
+A deterministic CNF encoding is available for the fixed-core completion
+problem.  It contains primary variables for added centers, slack
+variables for uncovered core holes, an at-most-three center constraint,
+and an at-most-\(r\) residual-hole constraint.
+
+No unsatisfiability result or checked proof for the \(r=5\) CNF is
+claimed in this report.  The CNF is an auxiliary encoding for future
+cross-checking.  Theorem \ref{thm:core} rests on the two finite exhaustive
+full-core verifiers described above, while Theorem \ref{thm:seven-core}
+rests on the independent Rust and C++20 pair reductions.
+
+\section{Reproducibility}
+
+From the repository root, the central result is replayed with:
+
+\begin{Verbatim}[fontsize=\small]
+make verify-result
+\end{Verbatim}
+
+The two primary verification paths can be run separately:
+
+\begin{Verbatim}[fontsize=\small]
+SEVEN_CORE_DIRECT_WORKERS=1 \
+  cargo run --release --manifest-path search/Cargo.toml \
+  --bin seven_core_direct
+
+make build/seven-core-independent
+build/seven-core-independent --workers 1
+\end{Verbatim}
+
+The supporting full-core and plateau computations are replayed with:
+
+\begin{Verbatim}[fontsize=\small]
+make core-direct-single
+make core-direct
+make plateau
+\end{Verbatim}
+
+The complete test and lint commands are:
+
+\begin{Verbatim}[fontsize=\small]
+make verify
+make test
+make test-search
+make lint-search
+\end{Verbatim}
+
+The optional CNF can be generated without making a solver claim:
+
+\begin{Verbatim}[fontsize=\small]
+make core-cnf
+\end{Verbatim}
+
+The retained near-covers, expected exact counts, source-file hashes, and
+canonical class data are recorded in:
+
+\begin{Verbatim}[fontsize=\small]
+data/search/seed_101_best_11.txt
+data/search/seed_202_best_11.txt
+data/search/seed_303_best_11.txt
+data/search/seed_404_best_11.txt
+data/search/plateau_classes.json
+evidence/seven-core-results.json
+\end{Verbatim}
+
+\section{Significance}
+
+The principal contribution is a complete structural exclusion inside a
+long-unresolved one-unit global interval.  Its significance is fourfold.
+
+\begin{enumerate}[leftmargin=2em]
+  \item A pattern first encountered through construction search is
+        converted into a finite theorem: none of eight explicit seven-word
+        subcores can occur in any size-at-most-eleven cover, even after
+        arbitrary choice of the remaining four centers.
+  \item The pair-averaging reduction gives a reusable exact method for
+        four-center completion questions over finite residual spaces.
+  \item The six-hole behavior is resolved exactly for the full core.  The
+        minimum residual, all eight optimal triples, their four
+        stabilizer classes, and the local one-center and two-center
+        replacement structure are reproducible.
+  \item Proposition \ref{prop:diameter} removes all diameter-at-most-four
+        candidates from every search for small covers, leaving only
+        diameters five, six, and seven for codes of size at most sixteen.
+\end{enumerate}
+
+These results can be used to prune exact-cover or SAT searches, construct
+regression benchmarks for independent solvers, identify forbidden
+substructures in candidate eleven-word codes, and guide larger
+neighborhood moves away from the observed six-hole plateau.
+
+\section{Limitations and open directions}
+
+The global interval remains
+\[
+  11 \leq K_3(7,3) \leq 12.
+\]
+In particular:
+
+\begin{itemize}[leftmargin=2em]
+  \item No eleven-word covering code is constructed.
+  \item No exclusion of all eleven-word covering codes is proved.
+  \item No new global lower or upper bound is claimed.
+  \item The historical global lower bound eleven is not independently
+        certified here.
+  \item The excluded seven-word subcores are not claimed to occur in every
+        hypothetical eleven-word cover.
+  \item The four retained six-hole classes are not claimed to classify
+        all eleven-word near-covers.
+  \item The CNF encoding has no claimed \(r=5\) unsatisfiability proof.
+  \item No compact proof certificate independent of the two verifier
+        implementations is supplied.
+  \item Repeated search convergence and solver timeouts are not used as
+        mathematical evidence.
+\end{itemize}
+
+Natural next steps are to derive additional forbidden subcores, import all
+such exclusions into the diameter-five through diameter-seven branches,
+build a global canonical classification of candidate eleven-word
+structures, and either construct an eleven-word cover or produce a complete
+checked exclusion certificate.
+
+\section{Code and data availability}
+
+The versioned repository release associated with this report contains the
+independent Rust and C++20 subcore verifiers, the Python and Rust full-core
+verifiers, exact tests, retained near-cover representatives, the
+machine-readable result record, the canonical plateau manifest, the optional
+CNF generator, and all replay commands listed above.  The separate
+deterministic manuscript bundle contains only the files needed to compile
+this report.  The repository release and its archival record should be cited
+together so that the source revision and generated results remain fixed.
+
+\section*{Acknowledgment of computational scope}
+
+All central claims are finite statements over the explicitly defined
+space \(\Hspace\).  The report separates direct mathematical arguments,
+complete finite computations, optional encodings, and unresolved global
+questions.  No inference is drawn from an incomplete solver run.
+
+\begin{thebibliography}{9}
+
+\bibitem{keri-table}
+G. K\'eri,
+\emph{Tables for ternary covering codes},
+\url{https://old.sztaki.hu/~keri/codes/3_tables.pdf},
+accessed September 6, 2026.
+
+\bibitem{keri-log}
+G. K\'eri,
+\emph{Covering-code table change log},
+entry dated October 22, 2008,
+\url{https://old.sztaki.hu/~keri/codes/index.htm},
+accessed September 6, 2026.
+
+\bibitem{hamalainen-rankinen-1991}
+H. H\"am\"al\"ainen and S. Rankinen,
+``Upper bounds for football pool problems and mixed covering codes,''
+\emph{Journal of Combinatorial Theory, Series A},
+vol. 56, no. 1, pp. 84--95, 1991.
+\href{https://doi.org/10.1016/0097-3165(91)90024-B}
+     {\texttt{doi:10.1016/0097-3165(91)90024-B}}.
+
+\bibitem{ostergard-hamalainen-1997}
+P. R. J. \"Osterg{\aa}rd and H. O. H\"am\"al\"ainen,
+``A new table of binary/ternary mixed covering codes,''
+\emph{Designs, Codes and Cryptography},
+vol. 11, no. 2, pp. 151--178, 1997.
+\href{https://doi.org/10.1023/A:1008228721072}
+     {\texttt{doi:10.1023/A:1008228721072}}.
+
+\bibitem{gijswijt-polak-2026}
+D. Gijswijt and S. Polak,
+``Semidefinite lower bounds for covering codes,''
+arXiv:2504.01932v2, 2026.
+\url{https://arxiv.org/abs/2504.01932v2}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "status": "finite exhaustive computation",
+  "classes": {
+    "A": {
+      "source": "seed_101_best_11.txt",
+      "sha256": "cca4e893eaafa0aa66cdbc73264500b80e1a3295ddf900ea1d1df58721e2686e",
+      "canonical_tail": [
+        "1112212",
+        "2220121",
+        "2221212"
+      ]
+    },
+    "B": {
+      "source": "seed_202_best_11.txt",
+      "sha256": "62dd2b7e755628a181d62f2a023dcc3414f6fe890dd2012ed258dc485d18d6a8",
+      "canonical_tail": [
+        "1121212",
+        "2212212",
+        "2220121"
+      ]
+    },
+    "C": {
+      "source": "seed_303_best_11.txt",
+      "sha256": "1815eac40ab041d85bde4ce744b4d42a997903fe463c367f868a3360c6d8615a",
+      "canonical_tail": [
+        "1112212",
+        "2220111",
+        "2221222"
+      ]
+    },
+    "D": {
+      "source": "seed_404_best_11.txt",
+      "sha256": "db6134f617d41fab5c7cc7073488cc05485e2c294ce84e0e84d5e8105a88aa9a",
+      "canonical_tail": [
+        "1112212",
+        "2220212",
+        "2221121"
+      ]
+    }
+  },
+  "expected": {
+    "canonical_hole": [
+      "0011000",
+      "0101000",
+      "0110000",
+      "1001000",
+      "1010000",
+      "1100000"
+    ],
+    "repair_center_count": 30,
+    "pair_isometry_class_count": 4,
+    "canonical_core": [
+      "0000011",
+      "0000102",
+      "0000220",
+      "0002121",
+      "1111022",
+      "1111110",
+      "1111201",
+      "2222000"
+    ],
+    "core_hole_count": 253,
+    "core_completion_minimum": 6,
+    "optimal_tails": [
+      [
+        "1112212",
+        "2220111",
+        "2221222"
+      ],
+      [
+        "1112212",
+        "2220121",
+        "2221212"
+      ],
+      [
+        "1112212",
+        "2220122",
+        "2221211"
+      ],
+      [
+        "1112212",
+        "2220212",
+        "2221121"
+      ],
+      [
+        "1112212",
+        "2220221",
+        "2221112"
+      ],
+      [
+        "1121212",
+        "2212212",
+        "2220121"
+      ],
+      [
+        "1211212",
+        "2122212",
+        "2220121"
+      ],
+      [
+        "1222212",
+        "2111212",
+        "2220121"
+      ]
+    ],
+    "optimal_tail_count": 8,
+    "tail_stabilizer_class_count": 4,
+    "core_stabilizer_size": 18,
+    "strict_one_minima": {
+      "A": 15,
+      "B": 15,
+      "C": 18,
+      "D": 15
+    },
+    "strict_two_minima": {
+      "A": 6,
+      "B": 6,
+      "C": 6,
+      "D": 6
+    },
+    "plateau_neighbor_counts": {
+      "A": 14,
+      "B": 6,
+      "C": 5,
+      "D": 5
+    },
+    "plateau_neighbor_count": 30,
+    "neighbor_class_counts": {
+      "A": {
+        "B": 6,
+        "C": 6,
+        "D": 2
+      },
+      "B": {
+        "A": 2,
+        "B": 4
+      },
+      "C": {
+        "A": 2,
+        "C": 2,
+        "D": 1
+      },
+      "D": {
+        "A": 2,
+        "C": 3
+      }
+    },
+    "adjacency": {
+      "A": [
+        "B",
+        "C",
+        "D"
+      ],
+      "B": [
+        "A",
+        "B"
+      ],
+      "C": [
+        "A",
+        "C",
+        "D"
+      ],
+      "D": [
+        "A",
+        "C"
+      ]
+    },
+    "raw_strict_two_candidates_per_class": 130152000,
+    "raw_strict_two_candidates_total": 520608000
+  },
+  "claim_boundary": {
+    "proved_computations": "The listed finite searches are exhaustive for the retained codes, their exact one- and two-replacement neighborhoods, and the fixed eight-word core.",
+    "conjecture": "The four classes may be the complete balanced six-hole basin, but no global classification of all size-11 near-covers is claimed."
+  }
+}

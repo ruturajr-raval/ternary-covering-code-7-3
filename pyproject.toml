@@ -1,13 +1,13 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "ternary-covering-code-7-3"
-version = "0.1.0"
-description = "Search and certification tools for the covering-code value K_3(7,3)"
+version = "0.2.0"
+description = "Seven-word subcore exclusions and plateau analysis for K_3(7,3)"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
   {name = "Ruturaj R Raval"}

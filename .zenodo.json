@@ -1,0 +1,23 @@
+{
+  "title": "Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K_3(7,3)",
+  "upload_type": "software",
+  "description": "Technical report, software, and reproducible finite computations for scoped structural exclusions in the unresolved ternary covering-code problem K_3(7,3). For each of eight seven-word subcores obtained by deleting one word from an explicit eight-word core, every set of at most four added centers leaves at least six radius-3 holes, and equality is attained. Consequently, no size-at-most-11 covering code contains any of these subcores or an isometric copy. Independent Rust and C++20 implementations verify the four deletion-orbit representatives by exact pair reduction, building 9,500,440 pair entries and querying 347,365 eligible first pairs. The release also classifies the exact three-center completions of the eight-word core, an exact six-hole replacement plateau, and a diameter-at-most-4 lower bound of 17. The global interval 11 <= K_3(7,3) <= 12 remains unchanged.",
+  "creators": [
+    {
+      "name": "Raval, Ruturaj R",
+      "affiliation": "Independent Researcher",
+      "orcid": "0000-0003-4930-8981"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "covering codes",
+    "coding theory",
+    "ternary Hamming space",
+    "extremal combinatorics",
+    "computer-assisted proof",
+    "meet-in-the-middle",
+    "reproducible research"
+  ],
+  "version": "0.2.0"
+}

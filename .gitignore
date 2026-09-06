@@ -1,10 +1,13 @@
 __pycache__/
 *.py[cod]
+*.egg-info/
 .pytest_cache/
 .venv/
 build/
 dist/
 search/target/
+.fixed-core-audit/
+.core-cnf-solver/
 artifacts/
 *.cnf
 *.log

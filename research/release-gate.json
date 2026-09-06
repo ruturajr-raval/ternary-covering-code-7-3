@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "project": "ternary-covering-code-7-3",
+  "evaluated_at": "2026-09-06",
+  "candidate_claim": "For each of eight seven-word subcores obtained from the explicit core C0, every set of at most four added centers leaves at least six radius-3 holes, and equality is attained. Hence no size-at-most-11 covering code contains any of these subcores or an isometric copy.",
+  "gates": {
+    "significant_original_result": true,
+    "complete_exact_value_result": false,
+    "prior_art_refreshed": true,
+    "baseline_verified_twice": true,
+    "rust_seven_core_verifier_passes": true,
+    "cpp20_independent_verifier_passes": true,
+    "all_deletion_orbits_covered": true,
+    "all_exact_counts_match_between_implementations": true,
+    "synthetic_direct_controls_pass": true,
+    "eight_word_supporting_theorem_verified": true,
+    "replacement_frontier_exactly_replayed": true,
+    "claim_scope_audited": true,
+    "limitations_documented": true,
+    "technical_report_ready": true,
+    "multi_reviewer_audit_completed": true,
+    "clean_commit_ci_passes": false,
+    "public_release_created": false,
+    "zenodo_version_doi_assigned": false,
+    "external_review_completed": false
+  },
+  "artifact_decision": "hold_until_clean_commit_ci",
+  "technical_report_decision": "ready",
+  "theorem_announcement_decision": "hold_until_release_gates_pass",
+  "reason": "The scoped theorem, independent finite verifiers, technical report, exact staged manifest, archive replay, and multi-review audit pass. Clean hosted CI, the public release, and Zenodo archival remain to be completed."
+}

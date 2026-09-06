@@ -4,8 +4,10 @@ const Q: usize = 3;
 const N: usize = 7;
 const RADIUS: usize = 3;
 const WORD_COUNT: usize = 2187;
+const MASK_WORDS: usize = WORD_COUNT.div_ceil(64);
 
 type Word = [u8; N];
+type BallMask = [u64; MASK_WORDS];
 
 struct Rng {
     state: u64,
@@ -73,6 +75,36 @@ fn build_balls(words: &[Word]) -> Vec<Vec<usize>> {
         .collect()
 }
 
+fn build_ball_masks(balls: &[Vec<usize>]) -> Vec<BallMask> {
+    balls
+        .iter()
+        .map(|ball| {
+            let mut mask = [0u64; MASK_WORDS];
+            for &point in ball {
+                mask[point / 64] |= 1u64 << (point % 64);
+            }
+            mask
+        })
+        .collect()
+}
+
+fn uncovered_mask(counts: &[u8]) -> BallMask {
+    let mut mask = [0u64; MASK_WORDS];
+    for (point, &count) in counts.iter().enumerate() {
+        if count == 0 {
+            mask[point / 64] |= 1u64 << (point % 64);
+        }
+    }
+    mask
+}
+
+fn intersection_size(left: &BallMask, right: &BallMask) -> usize {
+    left.iter()
+        .zip(right.iter())
+        .map(|(a, b)| (a & b).count_ones() as usize)
+        .sum()
+}
+
 fn add_center(counts: &mut [u8], ball: &[usize]) {
     for &point in ball {
         counts[point] += 1;
@@ -97,14 +129,11 @@ fn greedy_start(size: usize, balls: &[Vec<usize>], rng: &mut Rng) -> Vec<usize> 
     while code.len() < size {
         let mut best_gain = 0usize;
         let mut candidates = Vec::new();
-        for center in 1..WORD_COUNT {
+        for (center, ball) in balls.iter().enumerate().skip(1) {
             if code.contains(&center) {
                 continue;
             }
-            let gain = balls[center]
-                .iter()
-                .filter(|&&point| counts[point] == 0)
-                .count();
+            let gain = ball.iter().filter(|&&point| counts[point] == 0).count();
             if gain > best_gain {
                 best_gain = gain;
                 candidates.clear();
@@ -161,6 +190,7 @@ fn local_search(
     steps: usize,
     seed: u64,
     balls: &[Vec<usize>],
+    ball_masks: &[BallMask],
 ) -> (Vec<usize>, usize) {
     let mut rng = Rng::new(seed);
     let mut global_best = Vec::new();
@@ -209,6 +239,7 @@ fn local_search(
                 .enumerate()
                 .filter_map(|(point, &count)| (count == 0).then_some(point))
                 .collect();
+            let uncovered_bits = uncovered_mask(&counts);
             let focus = uncovered[rng.range(uncovered.len())];
 
             let replacement = if rng.chance(3, 100) {
@@ -224,10 +255,7 @@ fn local_search(
                     {
                         continue;
                     }
-                    let gain = balls[center]
-                        .iter()
-                        .filter(|&&point| counts[point] == 0)
-                        .count();
+                    let gain = intersection_size(&ball_masks[center], &uncovered_bits);
                     if gain > best_gain {
                         best_gain = gain;
                         candidates.clear();
@@ -276,9 +304,10 @@ fn main() {
     assert!(size >= 2);
     let words = build_words();
     let balls = build_balls(&words);
+    let ball_masks = build_ball_masks(&balls);
     assert!(balls.iter().all(|ball| ball.len() == 379));
 
-    let (mut code, uncovered) = local_search(size, restarts, steps, seed, &balls);
+    let (mut code, uncovered) = local_search(size, restarts, steps, seed, &balls, &ball_masks);
     code.sort_unstable();
     println!("result_size={} uncovered={}", code.len(), uncovered);
     for center in code {

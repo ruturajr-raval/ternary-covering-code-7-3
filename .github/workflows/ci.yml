@@ -8,16 +8,94 @@ permissions:
   contents: read
 
 jobs:
-  verify:
-    runs-on: ubuntu-latest
+  python:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python-version:
+          - "3.9"
+          - "3.12"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          python-version: "3.12"
+          persist-credentials: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Build and import Python package
+        run: |
+          mkdir -p build/wheels build/package-smoke
+          python -m pip install --disable-pip-version-check \
+            "pip==25.2" "wheel==0.45.1"
+          python -m pip wheel --disable-pip-version-check --no-deps \
+            --wheel-dir build/wheels .
+          python -m pip install --disable-pip-version-check --no-deps \
+            --target build/package-smoke build/wheels/*.whl
+          PYTHONPATH=build/package-smoke python -c \
+            "import ternary_covering_code"
       - name: Verify baseline
         run: make verify
       - name: Run Python tests
         run: make test
+      - name: Validate finite plateau report
+        if: matrix.python-version == '3.12'
+        run: make plateau
+      - name: Verify release manifest
+        if: matrix.python-version == '3.12'
+        run: make verify-release-manifest
+      - name: Assert no tracked files changed
+        if: always()
+        run: git diff --exit-code
+
+  rust:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Lint Rust
+        run: make lint-search
       - name: Run Rust tests
         run: make test-search
+      - name: Verify fixed core with one worker
+        run: make core-direct-single
+      - name: Verify fixed core with available workers
+        run: make core-direct
+      - name: Replay and bind seven-word subcore theorem
+        run: make replay-seven-core CXX=c++
+      - name: Run independent Clang controls
+        run: make seven-core-independent-clang-self-test
+      - name: Run C++ sanitizer controls
+        run: make seven-core-independent-sanitizer-self-test CXX=c++
+      - name: Assert no tracked files changed
+        if: always()
+        run: git diff --exit-code
+
+  paper:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install TeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra lmodern
+      - name: Build technical report
+        run: make paper-build
+      - name: Build deterministic source bundle
+        run: make paper-bundle
+      - name: Inspect source bundle
+        run: tar -tzf dist/paper/ternary-covering-code-7-3-source.tar.gz
+      - name: Upload report assets
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ternary-covering-code-7-3-report
+          path: |
+            build/paper/main.pdf
+            dist/paper/ternary-covering-code-7-3-source.tar.gz
+          if-no-files-found: error
+          retention-days: 30
+      - name: Assert no tracked files changed
+        if: always()
+        run: git diff --exit-code

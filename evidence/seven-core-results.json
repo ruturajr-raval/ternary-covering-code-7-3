@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "status": "finite exhaustive computation",
+  "space": {
+    "alphabet_size": 3,
+    "length": 7,
+    "radius": 3,
+    "ambient_words": 2187,
+    "ball_size": 379
+  },
+  "core": [
+    "0000011",
+    "0000102",
+    "0000220",
+    "0002121",
+    "1111022",
+    "1111110",
+    "1111201",
+    "2222000"
+  ],
+  "theorem": {
+    "fixed_subcore_size": 7,
+    "maximum_added_centers": 4,
+    "minimum_residual": 6,
+    "global_bound_improved": false
+  },
+  "symmetry": {
+    "core_stabilizer_order": 18,
+    "deletion_orbit_sizes": [
+      3,
+      1,
+      3,
+      1
+    ],
+    "deletions_covered": 8
+  },
+  "representatives": [
+    {
+      "deleted_word": "0000011",
+      "orbit_members": [
+        "0000011",
+        "0000102",
+        "0000220"
+      ],
+      "initial_holes": 370,
+      "candidate_centers": 2180,
+      "unordered_candidate_pairs": 2375110,
+      "first_pair_threshold": 183,
+      "eligible_first_pairs": 86319,
+      "first_pair_drift_hash_fnv64": "6d1d0f243334ca67",
+      "minimum_residual": 6,
+      "witness_additions": [
+        "0000011",
+        "1112212",
+        "2220121",
+        "2221212"
+      ]
+    },
+    {
+      "deleted_word": "0002121",
+      "orbit_members": [
+        "0002121"
+      ],
+      "initial_holes": 358,
+      "candidate_centers": 2180,
+      "unordered_candidate_pairs": 2375110,
+      "first_pair_threshold": 177,
+      "eligible_first_pairs": 81290,
+      "first_pair_drift_hash_fnv64": "b34c3a44a69fa433",
+      "minimum_residual": 6,
+      "witness_additions": [
+        "0002121",
+        "1112212",
+        "2220121",
+        "2221212"
+      ]
+    },
+    {
+      "deleted_word": "1111022",
+      "orbit_members": [
+        "1111022",
+        "1111110",
+        "1111201"
+      ],
+      "initial_holes": 396,
+      "candidate_centers": 2180,
+      "unordered_candidate_pairs": 2375110,
+      "first_pair_threshold": 196,
+      "eligible_first_pairs": 82464,
+      "first_pair_drift_hash_fnv64": "6cf818bcb93166ac",
+      "minimum_residual": 6,
+      "witness_additions": [
+        "1111022",
+        "1112212",
+        "2220121",
+        "2221212"
+      ]
+    },
+    {
+      "deleted_word": "2222000",
+      "orbit_members": [
+        "2222000"
+      ],
+      "initial_holes": 518,
+      "candidate_centers": 2180,
+      "unordered_candidate_pairs": 2375110,
+      "first_pair_threshold": 257,
+      "eligible_first_pairs": 97292,
+      "first_pair_drift_hash_fnv64": "3ab5df9451d2515b",
+      "minimum_residual": 6,
+      "witness_additions": [
+        "2222000",
+        "1112212",
+        "2220121",
+        "2221212"
+      ]
+    }
+  ],
+  "totals": {
+    "pair_entries_built": 9500440,
+    "eligible_first_pairs_queried": 347365
+  },
+  "witness_holes": [
+    "0011000",
+    "0101000",
+    "0110000",
+    "1001000",
+    "1010000",
+    "1100000"
+  ],
+  "implementations": {
+    "rust": "search/src/bin/seven_core_direct.rs",
+    "cpp20": "src/seven_core_independent.cpp",
+    "output_binding": "tools/verify_seven_core_outputs.py"
+  },
+  "controls": {
+    "cpp20": {
+      "pair_queries": 27984,
+      "four_center_sets": 140,
+      "four_center_minimum": 0
+    }
+  },
+  "claim_boundary": "The result excludes the eight stated seven-word subcores and their isometric copies. It does not determine K_3(7,3)."
+}
