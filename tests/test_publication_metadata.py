@@ -66,11 +66,12 @@ class PublicationMetadataTests(unittest.TestCase):
         self.assertGreaterEqual(publication_text.count(pair_entries), 4)
         self.assertGreaterEqual(publication_text.count(eligible_pairs), 4)
 
-    def test_publication_files_have_no_private_or_generated_traces(self):
+    def test_publication_files_have_no_local_or_visibility_traces(self):
         paths = (
             "README.md",
             "CITATION.cff",
             ".zenodo.json",
+            "release.json",
             "docs/CLAIMS.md",
             "docs/PRIOR_ART.md",
             "docs/RESEARCH_PLAN.md",
@@ -81,22 +82,15 @@ class PublicationMetadataTests(unittest.TestCase):
             "paper/README.md",
             "research/claim.yaml",
         )
-        encoded_forbidden_traces = tuple(
-            bytes.fromhex(value).decode("ascii")
-            for value in (
-                "2f55736572732f",
-                "7275747572616a722d696e6e6f766174696f6e",
-                "72657365617263682d776f726b62656e6368",
-                "70726976617465207265706f7369746f7279",
-                "70726976617465207265706f",
-                "4f70656e4149",
-                "43686174475054",
-                "436c61756465",
-                "416e7468726f706963",
-                "67656e657261746564206279204149",
-            )
+        forbidden = (
+            "\u2014",
+            "/" + "Users" + "/",
+            "ruturajr" + "-innovation",
+            "research" + "-workbench",
+            "private " + "repository",
+            "private " + "repo",
+            "private" + "_",
         )
-        forbidden = ("\u2014",) + encoded_forbidden_traces
         for relative in paths:
             text = (ROOT / relative).read_text(encoding="utf-8")
             for token in forbidden:

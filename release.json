@@ -51,7 +51,7 @@
       "sha256": "6cea2392f585cb91f7a8d30a6934755e5da5c0244056938f3d48e1bc1501e2d0"
     },
     "ci": {
-      "private_release_candidate": 34002501318,
+      "workbench_release_candidate": 34002501318,
       "public_main": 34008201113,
       "public_tag": 34008995117
     },
