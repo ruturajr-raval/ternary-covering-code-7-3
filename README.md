@@ -2,6 +2,95 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22452732.svg)](https://doi.org/10.5281/zenodo.22452732)
 
+## Project Overview
+
+### Project Metadata
+
+| Field | Value |
+| --- | --- |
+| Author | Ruturaj R Raval |
+| Affiliation | Independent Researcher |
+| ORCID | [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981) |
+| Field | Coding theory, finite geometry, and extremal combinatorics |
+| Problem | Determine the ternary covering number `K_3(7,3)` |
+| Current result | Eight explicit seven-word subcores and every isometric copy are excluded from all size-at-most-11 covers |
+| Result type | Complete scoped forbidden-subcore theorem and exact local classification |
+| Release | `v0.2.0` |
+| Version DOI | `10.5281/zenodo.22452733` |
+| Concept DOI | `10.5281/zenodo.22452732` |
+| License | MIT for project-original material |
+
+### Problem And Context
+
+The problem asks for the fewest radius-3 Hamming balls covering the 2,187
+ternary words of length 7. The audited interval is
+`11 <= K_3(7,3) <= 12`. Hamalainen and Rankinen supplied the recorded upper
+bound in 1991, while Keri's update log records the computer-proved lower bound
+from 2008. The one-unit gap has remained open for nearly eighteen years as of
+the 2026-09-06 audit.
+
+### Work And Verified Outcome
+
+The project independently reconstructs a 12-word cover and proves that each
+of eight seven-word subcores derived from one explicit eight-word core, and
+every isometric copy, is incompatible with every size-at-most-11 cover.
+Exact pair reduction determines a minimum residual of six for all deletion
+orbits. Additional results classify optimal core completions, four six-hole
+near-cover classes and their exact replacement neighborhoods, and prove that
+every diameter-at-most-4 cover needs at least 17 centers.
+
+### Claim Boundary
+
+The scoped subcore exclusions and local classifications are complete within
+their stated families. The project does not construct an 11-word cover,
+exclude every 11-word cover, independently reprove the historical global
+lower bound, or change the interval. The eight subcores are not claimed to
+occur in every hypothetical optimal code. No external mathematical review is
+claimed.
+
+### Verification And Reproduction
+
+Independent Rust and C++20 exhaustive verifiers check the primary
+theorem. Python and Rust checks cover the full core, deterministic manifests
+bind retained evidence, and current CI replays the release targets. Commands,
+counts, evidence paths, and the trust boundary are documented below. The
+primary theorem replay is CPU-only and uses Rust and C++20; rebuilding the
+pair-union tables is the high-resource step, while retained outputs support a
+lighter manifest and equality-witness audit.
+
+### Significance, Limitations, And Future Work
+
+The theorem converts recurrent near-cover structure into certified forbidden
+substructures that future global searches can prune immediately. The global
+one-unit gap remains open. Next work imports these exclusions into diameter
+5, 6, and 7 branches, discovers additional forbidden subcores, classifies
+global 11-word structures, and continues independent construction search.
+
+### Release, Citation, And Author
+
+The public repository is
+[`ruturajr-raval/ternary-covering-code-7-3`](https://github.com/ruturajr-raval/ternary-covering-code-7-3).
+The tagged `v0.2.0` release is
+`https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0`.
+Its versioned Zenodo archive is recorded as released and passes archive-mode
+checksum-manifest replay. The version DOI is `10.5281/zenodo.22452733`; the
+stable all-versions DOI is `10.5281/zenodo.22452732`.
+The technical report source is [`paper/main.tex`](paper/main.tex).
+
+The next mathematical acceptance gate is either a fully checked exclusion of
+at least one complete named diameter-5, diameter-6, or diameter-7 branch after
+applying the eight subcore exclusions, or exhaustive verification of an
+11-word cover. Search timeouts and incomplete branch scans do not pass this
+gate.
+
+Project-original software and documentation are MIT licensed. Historical
+tables and papers are cited but not redistributed, and the 12-word baseline
+was reconstructed independently. The residual-six equality witnesses were
+supplied to both primary verifiers and checked directly rather than discovered
+independently by each implementation. Citation metadata is in `CITATION.cff`.
+The author is Ruturaj R Raval, Independent Researcher, ORCID
+`0000-0003-4930-8981`.
+
 This repository gives reproducible structural exclusions and exact finite
 classifications for the unresolved ternary covering number `K_3(7,3)`.
 
@@ -180,7 +269,8 @@ Thus every cover with at most 16 centers has diameter 5, 6, or 7.
 - The three-center completion problem is solved exactly for `C0`.
 - Four recurrent six-hole near-cover classes and their strict one-center and
   two-center neighborhoods are classified exactly.
-- The diameter-at-most-4 branch is eliminated by a direct proof.
+- A direct proof excludes every diameter-at-most-4 cover of size at most 16
+  by establishing a lower bound of 17 centers.
 
 ## What Is Not Claimed
 
@@ -196,6 +286,7 @@ Thus every cover with at most 16 centers has diameter 5, 6, or 7.
 - No compact proof certificate independent of the two primary verifier
   implementations is supplied.
 - Incomplete searches and solver timeouts are not used as evidence.
+- No external mathematical review is claimed.
 
 The exact value of `K_3(7,3)` remains open.
 
@@ -280,6 +371,7 @@ status for its residual-at-most-5 instance is part of the release claim.
   negative results.
 - `docs/CLAIMS.md` separates established results from nonclaims.
 - `docs/PRIOR_ART.md` records the dated literature and novelty audit.
+- `paper/main.tex` is the technical report source for the released theorem.
 
 ## Future Work
 
@@ -314,13 +406,13 @@ redistributed.
 
 ## References
 
-- G. Keri, *Tables for Bounds on Covering Codes*, ternary table and update
-  log: `https://old.sztaki.hu/~keri/codes/`
-- H. Hamalainen and S. Rankinen, "Upper Bounds for Football Pool Problems
-  and Mixed Covering Codes", *Journal of Combinatorial Theory, Series A* 56
-  (1991), 84-95. DOI: `10.1016/0097-3165(91)90024-B`
-- P. R. J. Ostergard and H. O. Hamalainen, "A New Table of Binary/Ternary
-  Mixed Covering Codes", *Designs, Codes and Cryptography* 11 (1997),
-  151-178. DOI: `10.1023/A:1008228721072`
-- D. Gijswijt and S. Polak, "Semidefinite lower bounds for covering codes",
-  2026, `arXiv:2504.01932v2`
+- G. Keri, [Tables for Bounds on Covering
+  Codes](https://old.sztaki.hu/~keri/codes/), ternary table and update log.
+- H. Hamalainen and S. Rankinen, [Upper Bounds for Football Pool Problems
+  and Mixed Covering Codes](https://doi.org/10.1016/0097-3165(91)90024-B),
+  *Journal of Combinatorial Theory, Series A* 56 (1991), 84-95.
+- P. R. J. Ostergard and H. O. Hamalainen, [A New Table of Binary/Ternary
+  Mixed Covering Codes](https://doi.org/10.1023/A:1008228721072),
+  *Designs, Codes and Cryptography* 11 (1997), 151-178.
+- D. Gijswijt and S. Polak, [Semidefinite lower bounds for covering
+  codes](https://arxiv.org/abs/2504.01932), arXiv:2504.01932v2, 2026.

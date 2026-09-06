@@ -18,7 +18,7 @@
     "claim_scope_audited": true,
     "limitations_documented": true,
     "technical_report_ready": true,
-    "multi_reviewer_audit_completed": true,
+    "independent_repository_audits_completed": true,
     "clean_commit_ci_passes": true,
     "public_release_created": true,
     "zenodo_version_doi_assigned": true,
@@ -27,5 +27,6 @@
   "artifact_decision": "released",
   "technical_report_decision": "ready",
   "theorem_announcement_decision": "ready_for_scoped_result_announcement",
-  "reason": "The scoped theorem, independent finite verifiers, technical report, exact staged manifest, archive replay, multi-review audit, clean hosted CI, protected public release, and Zenodo archival pass. The exact global value remains open, and no external mathematical review is claimed."
+  "review_scope": "Independent repository audits covered claim wording, implementation consistency, reproducibility, and publication metadata. They are not represented as external mathematical peer review.",
+  "reason": "The scoped theorem, independent finite verifiers, technical report, exact staged manifest, archive replay, repository audits, clean hosted CI, protected public release, and Zenodo archival pass. The exact global value remains open, and no external mathematical review is claimed."
 }

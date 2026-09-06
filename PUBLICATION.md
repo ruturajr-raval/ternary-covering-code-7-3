@@ -1,5 +1,18 @@
 # Release v0.2.0
 
+## Release Identity
+
+| Field | Value |
+| --- | --- |
+| Title | Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K_3(7,3) |
+| Tagged release | [`v0.2.0`](https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0) |
+| Release date | 2026-09-06 |
+| Audited release commit | `e9fbec7c28e0e6a386953f0e0f242582de7802bb` |
+| Version DOI | [`10.5281/zenodo.22452733`](https://doi.org/10.5281/zenodo.22452733) |
+| Concept DOI | [`10.5281/zenodo.22452732`](https://doi.org/10.5281/zenodo.22452732) |
+| Archive status | Published Zenodo snapshot with archive-mode manifest replay |
+| License | MIT for project-original material |
+
 ## Background
 
 The ternary covering number `K_3(7,3)` asks for the minimum number of
@@ -72,6 +85,12 @@ The release also provides:
 - mutation and exhaustive small-universe controls; and
 - clean GitHub Actions runs on the release commit and protected tag.
 
+Tracked release files are bound by `release-manifest.sha256`. Exact theorem
+counts are recorded in `evidence/seven-core-results.json`, and
+`tools/verify_seven_core_outputs.py` compares fresh Rust and C++20 outputs
+against that record. The release record confirms that archive-mode manifest
+replay passes.
+
 ## Release And Archive
 
 - Public repository:
@@ -96,6 +115,24 @@ SHA-256 7e45f66c0eec4958e9ff2c6130a06df65ee339653c0d4bc9868782b6a16a8b99
 The Zenodo repository snapshot is
 `ruturajr-raval/ternary-covering-code-7-3-v0.2.0.zip`, with SHA-256
 `6cea2392f585cb91f7a8d30a6934755e5da5c0244056938f3d48e1bc1501e2d0`.
+The release record marks `v0.2.0` as released, records active update and
+deletion protection for version tags, and confirms archive-mode manifest
+replay.
+
+## Provenance Boundary
+
+Project-original code, evidence records, and documentation are MIT licensed.
+The historical tables and papers are cited rather than redistributed, and the
+12-word baseline was reconstructed independently. The residual-six equality
+witnesses were supplied to both primary verifiers and checked directly rather
+than discovered independently by each implementation.
+
+## Review Status
+
+The release passed claim-scope, implementation, reproducibility, manuscript,
+and release-metadata review. Clean CI completed on the release commit and
+protected tag, and all 10 pages of the hosted PDF were reviewed. No external
+mathematical or peer review is claimed.
 
 ## Significance
 
@@ -108,7 +145,7 @@ The pair-averaging reduction, independent finite verifiers, fixed count
 records, and local plateau classification also provide reusable regression
 benchmarks for covering, domination, and finite-set completion algorithms.
 
-## Remaining Work
+## Remaining Work And Next Acceptance Gate
 
 A final solution still requires either a verified 11-word construction or a
 complete checked exclusion of every 11-word code. The immediate routes are to
@@ -116,7 +153,21 @@ certify more forbidden subcores, incorporate all exclusions into the diameter
 5, 6, and 7 branches, classify global 11-word structures, and independently
 reconstruct the historical lower bound.
 
+The next mathematical acceptance gate is either a fully checked exclusion of
+at least one complete named diameter-5, diameter-6, or diameter-7 branch after
+applying the eight subcore exclusions, or exhaustive verification of an
+11-word cover.
+
+## Public Summary
+
+Release `v0.2.0` proves that eight explicit seven-word subcores, together with
+every isometric copy, cannot occur in any radius-3 ternary length-7 covering
+code of size at most 11. Independent Rust and C++20 exhaustive verifiers check
+the complete scoped theorem. The global interval
+`11 <= K_3(7,3) <= 12` remains unchanged.
+
 ## Citation
 
 Citation metadata is in `CITATION.cff`. Cite the archived `v0.2.0` result
 using version DOI `10.5281/zenodo.22452733`.
+Historical release scope is summarized in `RELEASE_NOTES.md`.

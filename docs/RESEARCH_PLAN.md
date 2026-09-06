@@ -42,19 +42,19 @@ Status date: 2026-09-06
   implementations.
 - Validate both reductions against direct exhaustive synthetic controls.
 
-## Current Phase 5 - Release
+## Completed Phase 5 - Release
 
-- Complete the technical report and archival metadata.
-- Commit and push the audited workbench revision.
-- Require all CI jobs to pass on the exact commit.
-- Perform final claim, implementation, and reproducibility reviews.
-- Create the public result repository only after those gates pass.
-- Tag the release, protect release tags, and archive the exact version with
-  Zenodo.
-- Do not move the immutable release tag after archival. Once Zenodo assigns
-  the version and concept DOIs, add them to citation metadata on the main
-  branch and to the editable GitHub release notes, then rerun CI.
-- Update the program tracker, visibility record, and LinkedIn-ready summary.
+- Completed the technical report and archival metadata.
+- Published the audited source in the research and result repositories.
+- Passed all required CI jobs on the audited release commit.
+- Completed repository-level claim, implementation, and reproducibility
+  audits.
+- Published and protected the `v0.2.0` release.
+- Archived the exact release through Zenodo at version DOI
+  `10.5281/zenodo.22452733`.
+- Added the version and concept DOIs to maintained citation metadata and
+  reran current-main CI.
+- Kept the immutable release tag fixed after archival.
 
 ## Next Mathematical Phase
 
