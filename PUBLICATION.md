@@ -5,6 +5,9 @@
 | Field | Value |
 | --- | --- |
 | Title | Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K_3(7,3) |
+| Author | Ruturaj R Raval |
+| Affiliation | Independent Researcher |
+| ORCID | [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981) |
 | Tagged release | [`v0.2.0`](https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0) |
 | Release date | 2026-09-06 |
 | Audited release commit | `e9fbec7c28e0e6a386953f0e0f242582de7802bb` |
