@@ -71,11 +71,15 @@ global 11-word structures, and continues independent construction search.
 The public repository is
 [`ruturajr-raval/ternary-covering-code-7-3`](https://github.com/ruturajr-raval/ternary-covering-code-7-3).
 The tagged `v0.2.0` release is
-`https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0`.
+`https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0`
+at audited release commit
+`e9fbec7c28e0e6a386953f0e0f242582de7802bb`.
 Its versioned Zenodo archive is recorded as released and passes archive-mode
 checksum-manifest replay. The version DOI is `10.5281/zenodo.22452733`; the
 stable all-versions DOI is `10.5281/zenodo.22452732`.
 The technical report source is [`paper/main.tex`](paper/main.tex).
+GitHub and Zenodo are the current dissemination baseline; no preprint-server
+deposit or external mathematical review is claimed.
 
 The next mathematical acceptance gate is either a fully checked exclusion of
 at least one complete named diameter-5, diameter-6, or diameter-7 branch after
@@ -88,6 +92,7 @@ tables and papers are cited but not redistributed, and the 12-word baseline
 was reconstructed independently. The residual-six equality witnesses were
 supplied to both primary verifiers and checked directly rather than discovered
 independently by each implementation. Citation metadata is in `CITATION.cff`.
+Release history is in `RELEASE_NOTES.md`.
 The author is Ruturaj R Raval, Independent Researcher, ORCID
 `0000-0003-4930-8981`.
 
