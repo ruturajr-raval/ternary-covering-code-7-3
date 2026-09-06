@@ -1,5 +1,7 @@
 # Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem `K_3(7,3)`
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22452732.svg)](https://doi.org/10.5281/zenodo.22452732)
+
 This repository gives reproducible structural exclusions and exact finite
 classifications for the unresolved ternary covering number `K_3(7,3)`.
 
@@ -8,6 +10,10 @@ The global interval remains
 ```text
 11 <= K_3(7,3) <= 12.
 ```
+
+The exact `v0.2.0` release is archived at version DOI
+`10.5281/zenodo.22452733`. All repository versions are collected under the
+stable concept DOI `10.5281/zenodo.22452732`.
 
 The principal result excludes eight explicit seven-word subcores, together
 with every isometric copy, from every radius-3 covering code of size at most
@@ -293,6 +299,12 @@ Ruturaj R Raval
 Independent Researcher
 
 ORCID: `0000-0003-4930-8981`
+
+## Citation And Archive
+
+Citation metadata is in `CITATION.cff`. Cite the exact `v0.2.0` result using
+version DOI `10.5281/zenodo.22452733`. The stable all-versions DOI is
+`10.5281/zenodo.22452732`.
 
 ## License
 

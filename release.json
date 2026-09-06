@@ -1,0 +1,82 @@
+{
+  "version": "0.2.0",
+  "release_status": "released",
+  "release_date": "2026-09-06",
+  "artifact_status": "verified_scoped_structural_exclusion",
+  "supported_claim": "For each of eight seven-word subcores obtained from the explicit core C0, every set of at most four added centers leaves at least six radius-3 holes, and equality is attained. Hence no size-at-most-11 covering code contains any of these subcores or an isometric copy.",
+  "claim_status": "scoped_theorem_global_interval_unchanged",
+  "new_result_status": "seven_word_subcore_exclusions_and_six_hole_plateau",
+  "artifact_reproducibility_ready": true,
+  "artifact_release_ready": true,
+  "technical_report_release_status": "released",
+  "external_review_status": "No external mathematical review is claimed.",
+  "technical_report": {
+    "title": "Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K_3(7,3)",
+    "manuscript": "paper/main.tex",
+    "submission_metadata": "paper/ARXIV_METADATA.md",
+    "source_archive": "dist/paper/ternary-covering-code-7-3-source.tar.gz",
+    "release_tag": "v0.2.0",
+    "release_tag_object": "91590762e8b9f569242b0f3f00737c475151370f",
+    "release_commit": "e9fbec7c28e0e6a386953f0e0f242582de7802bb",
+    "github_release_id": 383452788,
+    "github_release": "https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0",
+    "release_tag_protection": {
+      "ruleset_id": 22368665,
+      "enforcement": "active",
+      "pattern": "refs/tags/v*",
+      "rules": [
+        "update",
+        "deletion"
+      ],
+      "bypass_actors": []
+    },
+    "release_version_doi": "10.5281/zenodo.22452733",
+    "release_concept_doi": "10.5281/zenodo.22452732",
+    "release_assets": {
+      "pdf": {
+        "name": "main.pdf",
+        "size": 308477,
+        "sha256": "35972a51795a10b5f4e2856a2ea770c46e2bfafbd392b710f8a71118194a69b8"
+      },
+      "source": {
+        "name": "ternary-covering-code-7-3-source.tar.gz",
+        "size": 12162,
+        "sha256": "7e45f66c0eec4958e9ff2c6130a06df65ee339653c0d4bc9868782b6a16a8b99"
+      }
+    },
+    "release_zenodo_archive": {
+      "file": "ruturajr-raval/ternary-covering-code-7-3-v0.2.0.zip",
+      "size": 159521,
+      "md5": "8e820dcc91164deb522777ce29b88b4f",
+      "sha256": "6cea2392f585cb91f7a8d30a6934755e5da5c0244056938f3d48e1bc1501e2d0"
+    },
+    "ci": {
+      "private_release_candidate": 34002501318,
+      "public_main": 34008201113,
+      "public_tag": 34008995117
+    },
+    "claim_scope": "complete scoped structural exclusion with unchanged global interval"
+  },
+  "verification": {
+    "rust_primary_verifier": "search/src/bin/seven_core_direct.rs",
+    "cpp20_independent_verifier": "src/seven_core_independent.cpp",
+    "machine_readable_result": "evidence/seven-core-results.json",
+    "output_binder": "tools/verify_seven_core_outputs.py",
+    "release_manifest": "release-manifest.sha256",
+    "all_deletion_orbits_covered": true,
+    "all_exact_counts_match_between_implementations": true,
+    "archive_mode_manifest_replay_passes": true,
+    "pdf_pages_reviewed": 10
+  },
+  "limitations": [
+    "The exact value remains either 11 or 12.",
+    "No 11-word covering code is constructed.",
+    "No complete exclusion of all 11-word covering codes is proved.",
+    "The historical lower bound 11 is not independently certified here.",
+    "The eight excluded subcores are not claimed to occur in every hypothetical 11-word cover.",
+    "The four retained six-hole classes are not claimed to classify every 11-word near-cover.",
+    "No residual-at-most-5 SAT UNSAT result or checked proof is claimed.",
+    "No external mathematical review has occurred."
+  ],
+  "last_reviewed": "2026-09-06"
+}
