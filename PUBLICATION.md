@@ -102,13 +102,14 @@ The release also provides:
 - independent Rust and C++20 theorem verifiers;
 - Python and Rust full-core verifiers;
 - mutation and exhaustive small-universe controls; and
-- clean GitHub Actions runs on the release commit and protected tag.
+- clean GitHub Actions runs for the prior `v0.2.0` release and protected tag.
 
 Tracked release files are bound by `release-manifest.sha256`. Exact theorem
 counts are recorded in `evidence/seven-core-results.json`, and
 `tools/verify_seven_core_outputs.py` compares fresh Rust and C++20 outputs
-against that record. The release record confirms that archive-mode manifest
-replay passes.
+against that record. Local `v0.2.1` index-bound manifest verification and
+source-archive PDF replay pass. Hosted candidate CI, tag CI, and published
+archive verification remain pending.
 
 ## Release And Archive
 

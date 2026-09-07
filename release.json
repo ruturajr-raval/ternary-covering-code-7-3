@@ -65,7 +65,7 @@
       "md5": "8e820dcc91164deb522777ce29b88b4f",
       "sha256": "6cea2392f585cb91f7a8d30a6934755e5da5c0244056938f3d48e1bc1501e2d0"
     },
-    "ci": {
+    "previous_v0_2_0_ci": {
       "workbench_release_candidate": 34002501318,
       "public_main": 34008201113,
       "public_tag": 34008995117
@@ -81,7 +81,8 @@
     "release_manifest": "release-manifest.sha256",
     "all_deletion_orbits_covered": true,
     "all_exact_counts_match_between_implementations": true,
-    "archive_mode_manifest_replay_passes": true,
+    "local_index_manifest_replay_passes": true,
+    "published_v0_2_1_archive_replay_passes": false,
     "pdf_pages_reviewed": 10
   },
   "limitations": [

@@ -69,6 +69,20 @@ class PublicationMetadataTests(unittest.TestCase):
         self.assertGreaterEqual(publication_text.count(pair_entries), 4)
         self.assertGreaterEqual(publication_text.count(eligible_pairs), 4)
 
+    def test_archival_patch_verification_state_is_honest(self):
+        release = json.loads(
+            (ROOT / "release.json").read_text(encoding="ascii")
+        )
+        report = release["technical_report"]
+        verification = release["verification"]
+        self.assertIn("previous_v0_2_0_ci", report)
+        self.assertTrue(
+            verification["local_index_manifest_replay_passes"]
+        )
+        self.assertFalse(
+            verification["published_v0_2_1_archive_replay_passes"]
+        )
+
     def test_publication_files_have_no_local_or_visibility_traces(self):
         paths = (
             "README.md",
