@@ -52,4 +52,8 @@ Upload the LaTeX source and only the files required to compile it. The paper use
 
 ## Data And Code
 
-The accompanying source repository contains the independent Rust and C++20 subcore verifiers, the Python and Rust full-core verifiers, retained near-cover data, exact manifests, tests, and replay commands. Cite GitHub release `v0.2.0` together with the Zenodo version DOI `10.5281/zenodo.22452733`.
+The accompanying source repository contains the independent Rust and C++20 subcore verifiers, the Python and Rust full-core verifiers, retained near-cover data, exact manifests, tests, and replay commands. Cite GitHub release `v0.2.1` together with the Zenodo version DOI `10.5281/zenodo.22647770` and concept DOI `10.5281/zenodo.22452732`.
+
+Version `v0.2.1` is an archival and documentation patch adding an explicit
+compiled PDF and deterministic source bundle. The theorem, proof,
+certificates, data, and computations are unchanged.

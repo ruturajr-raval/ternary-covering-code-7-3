@@ -9,7 +9,8 @@ TITLE = (
     "Seven-Word Subcore Exclusions and a Six-Hole Plateau in the "
     "Ternary Covering Problem K_3(7,3)"
 )
-VERSION = "0.2.0"
+VERSION = "0.2.1"
+VERSION_DOI = "10.5281/zenodo.22647770"
 ORCID = "0000-0003-4930-8981"
 
 
@@ -30,6 +31,8 @@ class PublicationMetadataTests(unittest.TestCase):
         self.assertIn(TITLE, metadata)
         self.assertEqual(zenodo["version"], VERSION)
         self.assertIn(f"version: {VERSION}", cff)
+        self.assertIn(VERSION_DOI, cff)
+        self.assertIn(VERSION_DOI, metadata)
         self.assertRegex(
             pyproject,
             rf'(?m)^version = "{re.escape(VERSION)}"$',

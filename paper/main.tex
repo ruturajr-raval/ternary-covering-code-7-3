@@ -1,7 +1,6 @@
 \documentclass[11pt]{article}
 
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage[margin=1in]{geometry}
@@ -19,7 +18,7 @@
   linkcolor=blue!55!black,
   citecolor=blue!55!black,
   urlcolor=blue!55!black,
-  pdftitle={Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K\_3(7,3)},
+  pdftitle={Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K3(7,3)},
   pdfauthor={Ruturaj R Raval},
   pdfsubject={Exact computational coding theory and finite covering codes},
   pdfkeywords={covering codes, ternary codes, coding theory, extremal combinatorics, computer-assisted proof}
@@ -182,6 +181,7 @@ The stabilizer of \(C\) has order 18.  Its action on the eight choices of
 
 \begin{table}[htbp]
 \centering
+\setlength{\tabcolsep}{5.5pt}
 \caption{Deletion orbits and exact four-center completion results.}
 \label{tab:deletion-orbits}
 \begin{tabular}{l
@@ -195,8 +195,8 @@ Representative \(c\) &
 Orbit size &
 \(|\Uncov(S_c)|\) &
 Pair threshold &
-Eligible first pairs &
-Minimum residual\\
+\shortstack{Eligible\\first pairs} &
+\shortstack{Minimum\\residual}\\
 \midrule
 \codeword{0000011} & 3 & 370 & 183 & 86,319 & 6\\
 \codeword{0002121} & 1 & 358 & 177 & 81,290 & 6\\
@@ -714,6 +714,12 @@ CNF generator, and all replay commands listed above.  The separate
 deterministic manuscript bundle contains only the files needed to compile
 this report.  The repository release and its archival record should be cited
 together so that the source revision and generated results remain fixed.
+The paper-inclusive archival release is version \texttt{v0.2.1}, DOI
+\url{https://doi.org/10.5281/zenodo.22647770}, under concept DOI
+\url{https://doi.org/10.5281/zenodo.22452732}.  This archival and
+documentation patch adds an explicit compiled PDF and deterministic source
+bundle; the theorem, proof, certificates, retained data, and computations
+are unchanged.
 
 \section*{Acknowledgment of computational scope}
 

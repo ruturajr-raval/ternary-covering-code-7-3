@@ -1,4 +1,4 @@
-# Release v0.2.0
+# Release v0.2.1
 
 ## Release Identity
 
@@ -8,12 +8,14 @@
 | Author | Ruturaj R Raval |
 | Affiliation | Independent Researcher |
 | ORCID | [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981) |
-| Tagged release | [`v0.2.0`](https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0) |
-| Release date | 2026-09-06 |
-| Audited release commit | `e9fbec7c28e0e6a386953f0e0f242582de7802bb` |
-| Version DOI | [`10.5281/zenodo.22452733`](https://doi.org/10.5281/zenodo.22452733) |
+| Tagged release | [`v0.2.1`](https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.1) |
+| Release date | 2026-09-07 |
+| Release commit | Pending until the `v0.2.1` tag is created |
+| Archive status | Paper-inclusive Zenodo successor draft reserved; publication pending |
+| Underlying mathematical release | `v0.2.0` at commit `e9fbec7c28e0e6a386953f0e0f242582de7802bb` |
+| Version DOI | [`10.5281/zenodo.22647770`](https://doi.org/10.5281/zenodo.22647770) |
 | Concept DOI | [`10.5281/zenodo.22452732`](https://doi.org/10.5281/zenodo.22452732) |
-| Archive status | Published Zenodo snapshot with archive-mode manifest replay |
+| Patch scope | Paper-inclusive archival and documentation patch |
 | License | MIT for project-original material |
 
 ## Background
@@ -32,8 +34,8 @@ construction, would determine it at 12.
 
 ## What This Release Adds
 
-This release proves a complete scoped structural exclusion for eight
-seven-word subcores obtained from an explicit eight-word core `C0`.
+This release carries forward the complete scoped structural exclusion for
+eight seven-word subcores obtained from an explicit eight-word core `C0`.
 
 For every one of those subcores, every set of at most four added centers
 leaves at least six radius-3 holes, and equality is attained. Consequently,
@@ -58,6 +60,11 @@ The release also establishes:
 - a direct proof that every diameter-at-most-4 cover requires at least 17
   centers.
 
+Version `v0.2.1` adds an explicitly named compiled PDF, deterministic
+paper-source archive, and `SHA256SUMS`. It is an archival and documentation
+patch. The theorem, proof, certificates, retained data, exact counts, and
+computations are unchanged from `v0.2.0`.
+
 ## What Is Not Claimed
 
 - No 11-word covering code has been found.
@@ -79,6 +86,15 @@ The central result can be replayed with:
 make verify-result
 ```
 
+Build and verify the paper-inclusive archival assets with:
+
+```bash
+make archival-release
+```
+
+The paper build uses Tectonic 0.16.9 and a fixed `SOURCE_DATE_EPOCH`.
+Independent clean builds must reproduce the archived PDF hash.
+
 The release also provides:
 
 - an exact staged checksum manifest;
@@ -99,28 +115,28 @@ replay passes.
 - Public repository:
   `https://github.com/ruturajr-raval/ternary-covering-code-7-3`
 - GitHub release:
-  `https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0`
-- Version DOI: `10.5281/zenodo.22452733`
+  `https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.1`
+- Version DOI: `10.5281/zenodo.22647770`
 - Stable concept DOI: `10.5281/zenodo.22452732`
-- Release commit:
-  `e9fbec7c28e0e6a386953f0e0f242582de7802bb`
 
 Release assets:
 
 ```text
-main.pdf
-SHA-256 35972a51795a10b5f4e2856a2ea770c46e2bfafbd392b710f8a71118194a69b8
+ternary-covering-code-7-3-v0.2.1-paper.pdf
+SHA-256 721139ca75410342aa7a74f6680873047f618353c939dfbb9010a57457722ba5
 
-ternary-covering-code-7-3-source.tar.gz
-SHA-256 7e45f66c0eec4958e9ff2c6130a06df65ee339653c0d4bc9868782b6a16a8b99
+ternary-covering-code-7-3-v0.2.1-paper-source.tar.gz
+SHA-256 e5062ed74e255481cc0edbb37c2d7f63202c6f033d2df0b6274e69d374d882f7
+
+SHA256SUMS
+SHA-256 f0e01bc27a8caec9fc1d13dbbd75b462a18b1d0d34f0cc150830aa76e2656aa1
 ```
 
-The Zenodo repository snapshot is
+The preceding v0.2.0 Zenodo repository snapshot is
 `ruturajr-raval/ternary-covering-code-7-3-v0.2.0.zip`, with SHA-256
 `6cea2392f585cb91f7a8d30a6934755e5da5c0244056938f3d48e1bc1501e2d0`.
-The release record marks `v0.2.0` as released, records active update and
-deletion protection for version tags, and confirms archive-mode manifest
-replay.
+The current release record binds the prepared v0.2.1 paper assets and
+preserves the prior snapshot identity for provenance.
 
 ## Provenance Boundary
 
@@ -132,10 +148,10 @@ than discovered independently by each implementation.
 
 ## Review Status
 
-The release passed claim-scope, implementation, reproducibility, manuscript,
-and release-metadata review. Clean CI completed on the release commit and
-protected tag, and all 10 pages of the hosted PDF were reviewed. No external
-mathematical or peer review is claimed.
+The underlying scoped theorem passed claim-scope, implementation,
+reproducibility, manuscript, and release-metadata review in `v0.2.0`. The
+v0.2.1 archival patch adds separate paper-build, source-bundle, and checksum
+gates. No external mathematical or peer review is claimed.
 
 ## Significance
 
@@ -163,7 +179,7 @@ applying the eight subcore exclusions, or exhaustive verification of an
 
 ## Public Summary
 
-Release `v0.2.0` proves that eight explicit seven-word subcores, together with
+Release `v0.2.1` records that eight explicit seven-word subcores, together with
 every isometric copy, cannot occur in any radius-3 ternary length-7 covering
 code of size at most 11. Independent Rust and C++20 exhaustive verifiers check
 the complete scoped theorem. The global interval
@@ -171,6 +187,6 @@ the complete scoped theorem. The global interval
 
 ## Citation
 
-Citation metadata is in `CITATION.cff`. Cite the archived `v0.2.0` result
-using version DOI `10.5281/zenodo.22452733`.
+Citation metadata is in `CITATION.cff`. Cite the paper-inclusive `v0.2.1`
+result using version DOI `10.5281/zenodo.22647770`.
 Historical release scope is summarized in `RELEASE_NOTES.md`.

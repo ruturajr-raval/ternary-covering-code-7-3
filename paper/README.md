@@ -1,8 +1,18 @@
 # Technical Report
 
-The manuscript is `main.tex`.
+The manuscript is `main.tex` in this directory.
 
-Build the PDF from the repository root:
+From an extracted release source archive, build the PDF with Tectonic 0.16.9
+or a compatible release:
+
+```bash
+mkdir -p build/paper
+SOURCE_DATE_EPOCH=1788739200 FORCE_SOURCE_DATE=1 \
+  tectonic -X compile paper/main.tex \
+    --outdir build/paper --keep-logs
+```
+
+From a full repository checkout, the equivalent project command is:
 
 ```bash
 make paper-build
@@ -20,7 +30,16 @@ The archive is written to:
 dist/paper/ternary-covering-code-7-3-source.tar.gz
 ```
 
-The manuscript's primary theorem is replayed independently with:
+Build the paper-inclusive archival release set with:
+
+```bash
+make release-assets
+```
+
+The versioned PDF, source archive, and `SHA256SUMS` are written to
+`dist/release/`.
+
+A full repository checkout additionally supports independent theorem replay:
 
 ```bash
 make seven-core-direct-single

@@ -77,23 +77,52 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-      - name: Install TeX
+      - name: Install pinned Tectonic
         run: |
-          sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-extra lmodern
+          mkdir -p build/tectonic
+          curl -fL \
+            https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.16.9/tectonic-0.16.9-x86_64-unknown-linux-gnu.tar.gz \
+            -o build/tectonic/tectonic.tar.gz
+          echo "f3c825128095dc3399ea11c08c18035b33050a216930c295c79e8eb11bd21de4  build/tectonic/tectonic.tar.gz" \
+            | sha256sum --check
+          tar -xzf build/tectonic/tectonic.tar.gz -C build/tectonic
       - name: Build technical report
-        run: make paper-build
+        run: make paper-build TECTONIC="$PWD/build/tectonic/tectonic"
       - name: Build deterministic source bundle
         run: make paper-bundle
+      - name: Build paper-inclusive archival assets
+        run: make release-assets
+      - name: Verify paper-inclusive archival assets
+        run: make verify-release-assets
       - name: Inspect source bundle
         run: tar -tzf dist/paper/ternary-covering-code-7-3-source.tar.gz
+      - name: Inspect archival source bundle
+        run: >-
+          tar -tzf
+          dist/release/ternary-covering-code-7-3-v0.2.1-paper-source.tar.gz
+      - name: Rebuild PDF from archival source bundle
+        run: |
+          mkdir -p build/release-source-replay/compiled
+          tar -xzf \
+            dist/release/ternary-covering-code-7-3-v0.2.1-paper-source.tar.gz \
+            -C build/release-source-replay
+          cd build/release-source-replay
+          SOURCE_DATE_EPOCH=1788739200 FORCE_SOURCE_DATE=1 \
+            "$GITHUB_WORKSPACE/build/tectonic/tectonic" \
+              -X compile paper/main.tex \
+              --outdir compiled --keep-logs
+          cmp compiled/main.pdf \
+            ../../dist/release/ternary-covering-code-7-3-v0.2.1-paper.pdf
+      - name: Assert committed archival assets are current
+        run: git diff --exit-code -- dist/release
       - name: Upload report assets
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: ternary-covering-code-7-3-report
           path: |
-            build/paper/main.pdf
-            dist/paper/ternary-covering-code-7-3-source.tar.gz
+            dist/release/ternary-covering-code-7-3-v0.2.1-paper.pdf
+            dist/release/ternary-covering-code-7-3-v0.2.1-paper-source.tar.gz
+            dist/release/SHA256SUMS
           if-no-files-found: error
           retention-days: 30
       - name: Assert no tracked files changed

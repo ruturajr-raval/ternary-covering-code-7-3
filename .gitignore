@@ -4,7 +4,11 @@ __pycache__/
 .pytest_cache/
 .venv/
 build/
-dist/
+dist/*
+!dist/release/
+!dist/release/SHA256SUMS
+!dist/release/ternary-covering-code-7-3-v0.2.1-paper.pdf
+!dist/release/ternary-covering-code-7-3-v0.2.1-paper-source.tar.gz
 search/target/
 .fixed-core-audit/
 .core-cnf-solver/

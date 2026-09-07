@@ -1,25 +1,35 @@
 {
-  "version": "0.2.0",
-  "release_status": "released",
-  "release_date": "2026-09-06",
-  "artifact_status": "verified_scoped_structural_exclusion",
+  "version": "0.2.1",
+  "release_status": "prepared",
+  "release_date": "2026-09-07",
+  "artifact_status": "verified_scoped_structural_exclusion_with_paper_inclusive_archival_patch",
   "supported_claim": "For each of eight seven-word subcores obtained from the explicit core C0, every set of at most four added centers leaves at least six radius-3 holes, and equality is attained. Hence no size-at-most-11 covering code contains any of these subcores or an isometric copy.",
   "claim_status": "scoped_theorem_global_interval_unchanged",
   "new_result_status": "seven_word_subcore_exclusions_and_six_hole_plateau",
   "artifact_reproducibility_ready": true,
   "artifact_release_ready": true,
-  "technical_report_release_status": "released",
+  "technical_report_release_status": "paper_inclusive_patch_prepared",
   "external_review_status": "No external mathematical review is claimed.",
   "technical_report": {
     "title": "Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K_3(7,3)",
     "manuscript": "paper/main.tex",
     "submission_metadata": "paper/ARXIV_METADATA.md",
-    "source_archive": "dist/paper/ternary-covering-code-7-3-source.tar.gz",
-    "release_tag": "v0.2.0",
-    "release_tag_object": "91590762e8b9f569242b0f3f00737c475151370f",
-    "release_commit": "e9fbec7c28e0e6a386953f0e0f242582de7802bb",
-    "github_release_id": 383452788,
-    "github_release": "https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0",
+    "source_archive": "dist/release/ternary-covering-code-7-3-v0.2.1-paper-source.tar.gz",
+    "compiled_pdf": "dist/release/ternary-covering-code-7-3-v0.2.1-paper.pdf",
+    "checksums": "dist/release/SHA256SUMS",
+    "reproducible_pdf_build": {
+      "engine": "Tectonic 0.16.9",
+      "source_date_epoch": 1788739200,
+      "force_source_date": true
+    },
+    "release_tag": "v0.2.1",
+    "github_release": "https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.1",
+    "underlying_mathematical_release": {
+      "tag": "v0.2.0",
+      "tag_object": "91590762e8b9f569242b0f3f00737c475151370f",
+      "commit": "e9fbec7c28e0e6a386953f0e0f242582de7802bb",
+      "github_release_id": 383452788
+    },
     "release_tag_protection": {
       "ruleset_id": 22368665,
       "enforcement": "active",
@@ -30,21 +40,26 @@
       ],
       "bypass_actors": []
     },
-    "release_version_doi": "10.5281/zenodo.22452733",
+    "release_version_doi": "10.5281/zenodo.22647770",
     "release_concept_doi": "10.5281/zenodo.22452732",
     "release_assets": {
       "pdf": {
-        "name": "main.pdf",
-        "size": 308477,
-        "sha256": "35972a51795a10b5f4e2856a2ea770c46e2bfafbd392b710f8a71118194a69b8"
+        "name": "ternary-covering-code-7-3-v0.2.1-paper.pdf",
+        "size": 86683,
+        "sha256": "721139ca75410342aa7a74f6680873047f618353c939dfbb9010a57457722ba5"
       },
       "source": {
-        "name": "ternary-covering-code-7-3-source.tar.gz",
-        "size": 12162,
-        "sha256": "7e45f66c0eec4958e9ff2c6130a06df65ee339653c0d4bc9868782b6a16a8b99"
+        "name": "ternary-covering-code-7-3-v0.2.1-paper-source.tar.gz",
+        "size": 12590,
+        "sha256": "e5062ed74e255481cc0edbb37c2d7f63202c6f033d2df0b6274e69d374d882f7"
+      },
+      "checksums": {
+        "name": "SHA256SUMS",
+        "size": 228,
+        "sha256": "f0e01bc27a8caec9fc1d13dbbd75b462a18b1d0d34f0cc150830aa76e2656aa1"
       }
     },
-    "release_zenodo_archive": {
+    "previous_release_zenodo_archive": {
       "file": "ruturajr-raval/ternary-covering-code-7-3-v0.2.0.zip",
       "size": 159521,
       "md5": "8e820dcc91164deb522777ce29b88b4f",
@@ -55,7 +70,8 @@
       "public_main": 34008201113,
       "public_tag": 34008995117
     },
-    "claim_scope": "complete scoped structural exclusion with unchanged global interval"
+    "claim_scope": "complete scoped structural exclusion with unchanged global interval",
+    "patch_scope": "Archival and documentation patch adding an explicit compiled PDF, deterministic paper-source archive, and SHA256SUMS. The theorem, proof, certificates, retained data, exact counts, and computations are unchanged."
   },
   "verification": {
     "rust_primary_verifier": "search/src/bin/seven_core_direct.rs",
@@ -78,5 +94,5 @@
     "No residual-at-most-5 SAT UNSAT result or checked proof is claimed.",
     "No external mathematical review has occurred."
   ],
-  "last_reviewed": "2026-09-06"
+  "last_reviewed": "2026-09-07"
 }

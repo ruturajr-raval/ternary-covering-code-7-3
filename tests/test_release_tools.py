@@ -11,6 +11,7 @@ from tools.build_release_manifest import (
     git_index_available,
     index_blob,
     sha256_bytes,
+    working_tree_paths,
 )
 from tools.verify_checksum_manifest import parse_manifest, verify_entries
 from tools.verify_seven_core_outputs import (
@@ -55,6 +56,16 @@ class PaperBundleTests(unittest.TestCase):
 
 
 class ChecksumManifestTests(unittest.TestCase):
+    def test_working_tree_paths_include_untracked_nonignored_file(self):
+        with tempfile.TemporaryDirectory(
+            dir=ROOT,
+            prefix=".checksum-manifest-test-",
+        ) as temporary_directory:
+            payload = Path(temporary_directory) / "payload.txt"
+            payload.write_text("working tree\n", encoding="ascii")
+            paths = working_tree_paths(ROOT / "release-manifest.sha256")
+            self.assertIn(payload.relative_to(ROOT), paths)
+
     def test_index_blob_matches_tracked_file(self):
         if not git_index_available():
             self.skipTest("Git index is unavailable in a source archive.")

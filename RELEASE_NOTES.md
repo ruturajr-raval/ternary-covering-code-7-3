@@ -1,5 +1,18 @@
 # Release Notes
 
+## [v0.2.1](https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.1) - 2026-09-07
+
+### Archival Patch
+
+- Added an explicitly named compiled PDF, deterministic paper-source archive,
+  and `SHA256SUMS` for GitHub and Zenodo archival.
+- Updated citation, release, and archive metadata to version DOI
+  `10.5281/zenodo.22647770` and concept DOI
+  `10.5281/zenodo.22452732`.
+- This is an archival and documentation patch. The theorem, proof,
+  certificates, data, exact counts, and computations are unchanged from
+  `v0.2.0`.
+
 ## [v0.2.0](https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.0) - 2026-09-06
 
 ### Result

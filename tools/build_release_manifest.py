@@ -69,6 +69,30 @@ def staged_paths(output: Path) -> tuple[Path, ...]:
     return tuple(sorted(paths, key=lambda path: path.as_posix()))
 
 
+def working_tree_paths(output: Path) -> tuple[Path, ...]:
+    result = subprocess.run(
+        [
+            "git",
+            "ls-files",
+            "--cached",
+            "--others",
+            "--exclude-standard",
+            "-z",
+        ],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    )
+    output_relative = output.resolve().relative_to(ROOT)
+    paths = {
+        Path(raw_path.decode("utf-8"))
+        for raw_path in result.stdout.split(b"\0")
+        if raw_path
+    }
+    paths.discard(output_relative)
+    return tuple(sorted(paths, key=lambda path: path.as_posix()))
+
+
 def index_blob(relative: Path) -> bytes:
     result = subprocess.run(
         ["git", "show", f":{relative.as_posix()}"],
@@ -150,9 +174,21 @@ def build_index_manifest(output: Path) -> int:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--working-tree",
+        action="store_true",
+        help="hash tracked and untracked non-ignored working-tree files",
+    )
     args = parser.parse_args()
-    entry_count = build_index_manifest(args.output)
-    print(f"output={args.output} entries={entry_count} source=git-index")
+    if args.working_tree:
+        selected = working_tree_paths(args.output)
+        build_manifest(args.output, selected)
+        entry_count = len(selected)
+        source = "working-tree"
+    else:
+        entry_count = build_index_manifest(args.output)
+        source = "git-index"
+    print(f"output={args.output} entries={entry_count} source={source}")
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ternary-covering-code-7-3"
-version = "0.2.0"
+version = "0.2.1"
 description = "Seven-word subcore exclusions and plateau analysis for K_3(7,3)"
 readme = "README.md"
 requires-python = ">=3.9"

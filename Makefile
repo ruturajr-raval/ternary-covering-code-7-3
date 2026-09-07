@@ -3,8 +3,10 @@ PYTHONPATH := src
 CXX ?= c++
 CXXFLAGS ?= -O3 -DNDEBUG -std=c++20 -pthread -Wall -Wextra -Wpedantic -Wconversion -Wshadow
 SANITIZER_FLAGS ?= -O1 -g -std=c++20 -pthread -Wall -Wextra -Wpedantic -Wconversion -Wshadow -fsanitize=address,undefined -fno-omit-frame-pointer
+TECTONIC ?= tectonic
+SOURCE_DATE_EPOCH ?= 1788739200
 
-.PHONY: verify test test-search lint-search verify-result verify-evidence verify-seven-core-outputs replay-seven-core plateau core-direct core-direct-single seven-core-direct seven-core-direct-single seven-core-independent seven-core-independent-self-test seven-core-independent-clang-self-test seven-core-independent-sanitizer-self-test paper-build paper-bundle release-manifest verify-release-manifest search-12 search-11 search-exchange cnf-12 cnf-11 branch-cnf orbit-cnf core-cnf orbits
+.PHONY: verify test test-search lint-search verify-result verify-evidence verify-seven-core-outputs replay-seven-core plateau core-direct core-direct-single seven-core-direct seven-core-direct-single seven-core-independent seven-core-independent-self-test seven-core-independent-clang-self-test seven-core-independent-sanitizer-self-test paper-build paper-bundle release-assets verify-release-assets archival-release release-manifest verify-release-manifest search-12 search-11 search-exchange cnf-12 cnf-11 branch-cnf orbit-cnf core-cnf orbits
 
 verify:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) tools/verify_code.py data/baseline_code_12.txt
@@ -85,14 +87,24 @@ seven-core-independent-sanitizer-self-test: build/seven-core-independent-sanitiz
 
 paper-build:
 	mkdir -p build/paper
-	latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error \
-		-output-directory=build/paper paper/main.tex
+	SOURCE_DATE_EPOCH=$(SOURCE_DATE_EPOCH) FORCE_SOURCE_DATE=1 \
+		TECTONIC_CACHE_DIR=build/tectonic-cache \
+		$(TECTONIC) -X compile paper/main.tex \
+		--outdir build/paper --keep-logs
 
 paper-bundle:
 	$(PYTHON) tools/build_paper_bundle.py
 
+release-assets:
+	$(PYTHON) tools/build_archival_release.py
+
+verify-release-assets:
+	$(PYTHON) tools/build_archival_release.py --verify
+
+archival-release: paper-build paper-bundle release-assets verify-release-assets
+
 release-manifest:
-	$(PYTHON) tools/build_release_manifest.py
+	$(PYTHON) tools/build_release_manifest.py --working-tree
 
 verify-release-manifest:
 	$(PYTHON) tools/verify_checksum_manifest.py

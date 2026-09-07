@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "ternary-covering-code-7-3",
-  "evaluated_at": "2026-09-06",
+  "evaluated_at": "2026-09-07",
   "candidate_claim": "For each of eight seven-word subcores obtained from the explicit core C0, every set of at most four added centers leaves at least six radius-3 holes, and equality is attained. Hence no size-at-most-11 covering code contains any of these subcores or an isometric copy.",
   "gates": {
     "significant_original_result": true,
@@ -18,15 +18,22 @@
     "claim_scope_audited": true,
     "limitations_documented": true,
     "technical_report_ready": true,
+    "compiled_pdf_ready": true,
+    "deterministic_paper_source_ready": true,
+    "release_asset_checksums_valid": true,
+    "archival_patch_changes_mathematics": false,
+    "archival_patch_local_checks_pass": true,
+    "archival_patch_hosted_ci_passes": false,
     "independent_repository_audits_completed": true,
-    "clean_commit_ci_passes": true,
-    "public_release_created": true,
+    "prior_release_clean_ci_passes": true,
+    "public_release_created": false,
     "zenodo_version_doi_assigned": true,
     "external_review_completed": false
   },
-  "artifact_decision": "released",
+  "artifact_decision": "ready",
   "technical_report_decision": "ready",
   "theorem_announcement_decision": "ready_for_scoped_result_announcement",
   "review_scope": "Independent repository audits covered claim wording, implementation consistency, reproducibility, and publication metadata. They are not represented as external mathematical peer review.",
-  "reason": "The scoped theorem, independent finite verifiers, technical report, exact staged manifest, archive replay, repository audits, clean hosted CI, protected public release, and Zenodo archival pass. The exact global value remains open, and no external mathematical review is claimed."
+  "reason": "The scoped theorem and its independent finite verifiers remain unchanged from v0.2.0. The v0.2.1 compiled PDF, deterministic source bundle, and release checksums are ready as an archival and documentation patch. Publication actions are outside this preparation. The exact global value remains open, and no external mathematical review is claimed.",
+  "archival_patch_decision": "ready"
 }
