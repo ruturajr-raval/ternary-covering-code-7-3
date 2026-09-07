@@ -389,6 +389,8 @@ The public repository is
 [`ruturajr-raval/ternary-covering-code-7-3`](https://github.com/ruturajr-raval/ternary-covering-code-7-3).
 The paper-inclusive archival release is
 [`v0.2.1`](https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.1).
+Its release commit is
+`3f1f1baf1f9a18944deaed555a241b90f683b7ec`.
 
 The exact archival patch is identified by version DOI
 [`10.5281/zenodo.22647770`](https://doi.org/10.5281/zenodo.22647770).
@@ -399,6 +401,8 @@ Release `v0.2.1` is an archival and documentation patch. It adds an
 explicitly named compiled PDF, a deterministic paper-source archive, and a
 checksum file suitable for GitHub and Zenodo. The theorem, proof,
 certificates, retained data, and computations are unchanged from `v0.2.0`.
+All three assets were downloaded from both public services and verified
+against the release checksum file.
 
 The technical report source is [`paper/main.tex`](paper/main.tex). GitHub and
 Zenodo are the current dissemination baseline. No preprint-server deposit or

@@ -79,8 +79,18 @@ class PublicationMetadataTests(unittest.TestCase):
         self.assertTrue(
             verification["local_index_manifest_replay_passes"]
         )
-        self.assertFalse(
+        self.assertTrue(
             verification["published_v0_2_1_archive_replay_passes"]
+        )
+        self.assertTrue(verification["public_release_created"])
+        self.assertTrue(verification["zenodo_record_updated_with_paper"])
+        self.assertTrue(
+            verification["public_release_assets_downloaded_and_verified"]
+        )
+        self.assertEqual(release["release_status"], "published")
+        self.assertEqual(
+            report["release_commit"],
+            "3f1f1baf1f9a18944deaed555a241b90f683b7ec",
         )
 
     def test_publication_files_have_no_local_or_visibility_traces(self):
@@ -103,7 +113,7 @@ class PublicationMetadataTests(unittest.TestCase):
             "\u2014",
             "/" + "Users" + "/",
             "ruturajr" + "-innovation",
-            "research" + "-workbench",
+            "work" + "bench",
             "private " + "repository",
             "private " + "repo",
             "private" + "_",

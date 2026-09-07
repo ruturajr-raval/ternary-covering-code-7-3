@@ -10,8 +10,8 @@
 | ORCID | [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981) |
 | Tagged release | [`v0.2.1`](https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.1) |
 | Release date | 2026-09-07 |
-| Release commit | Pending until the `v0.2.1` tag is created |
-| Archive status | Paper-inclusive Zenodo successor draft reserved; publication pending |
+| Release commit | `3f1f1baf1f9a18944deaed555a241b90f683b7ec` |
+| Archive status | GitHub release and paper-inclusive Zenodo version published; all three public assets downloaded and verified |
 | Underlying mathematical release | `v0.2.0` at commit `e9fbec7c28e0e6a386953f0e0f242582de7802bb` |
 | Version DOI | [`10.5281/zenodo.22647770`](https://doi.org/10.5281/zenodo.22647770) |
 | Concept DOI | [`10.5281/zenodo.22452732`](https://doi.org/10.5281/zenodo.22452732) |
@@ -108,8 +108,10 @@ Tracked release files are bound by `release-manifest.sha256`. Exact theorem
 counts are recorded in `evidence/seven-core-results.json`, and
 `tools/verify_seven_core_outputs.py` compares fresh Rust and C++20 outputs
 against that record. Local `v0.2.1` index-bound manifest verification and
-source-archive PDF replay pass. Hosted candidate CI, tag CI, and published
-archive verification remain pending.
+source-archive PDF replay pass. Candidate CI `34149337316`, public
+main CI `34150876791`, and public tag CI `34150877158` passed. The GitHub and
+Zenodo release assets were downloaded independently and verified against
+`SHA256SUMS`.
 
 ## Release And Archive
 
@@ -136,7 +138,7 @@ SHA-256 f0e01bc27a8caec9fc1d13dbbd75b462a18b1d0d34f0cc150830aa76e2656aa1
 The preceding v0.2.0 Zenodo repository snapshot is
 `ruturajr-raval/ternary-covering-code-7-3-v0.2.0.zip`, with SHA-256
 `6cea2392f585cb91f7a8d30a6934755e5da5c0244056938f3d48e1bc1501e2d0`.
-The current release record binds the prepared v0.2.1 paper assets and
+The current release record binds the published v0.2.1 paper assets and
 preserves the prior snapshot identity for provenance.
 
 ## Provenance Boundary
@@ -151,8 +153,9 @@ than discovered independently by each implementation.
 
 The underlying scoped theorem passed claim-scope, implementation,
 reproducibility, manuscript, and release-metadata review in `v0.2.0`. The
-v0.2.1 archival patch adds separate paper-build, source-bundle, and checksum
-gates. No external mathematical or peer review is claimed.
+v0.2.1 archival patch passed separate paper-build, source-bundle, checksum,
+hosted-CI, and public-download gates. No external mathematical or peer review
+is claimed.
 
 ## Significance
 

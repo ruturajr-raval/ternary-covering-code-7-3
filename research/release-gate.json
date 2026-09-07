@@ -23,17 +23,19 @@
     "release_asset_checksums_valid": true,
     "archival_patch_changes_mathematics": false,
     "archival_patch_local_checks_pass": true,
-    "archival_patch_hosted_ci_passes": false,
+    "archival_patch_hosted_ci_passes": true,
     "independent_repository_audits_completed": true,
     "prior_release_clean_ci_passes": true,
-    "public_release_created": false,
+    "public_release_created": true,
     "zenodo_version_doi_assigned": true,
+    "zenodo_record_updated_with_paper": true,
+    "public_release_assets_downloaded_and_verified": true,
     "external_review_completed": false
   },
-  "artifact_decision": "ready",
-  "technical_report_decision": "ready",
+  "artifact_decision": "published",
+  "technical_report_decision": "published",
   "theorem_announcement_decision": "ready_for_scoped_result_announcement",
   "review_scope": "Independent repository audits covered claim wording, implementation consistency, reproducibility, and publication metadata. They are not represented as external mathematical peer review.",
-  "reason": "The scoped theorem and its independent finite verifiers remain unchanged from v0.2.0. The v0.2.1 compiled PDF, deterministic source bundle, and release checksums are ready as an archival and documentation patch. Publication actions are outside this preparation. The exact global value remains open, and no external mathematical review is claimed.",
-  "archival_patch_decision": "ready"
+  "reason": "The scoped theorem and its independent finite verifiers remain unchanged from v0.2.0. The v0.2.1 compiled PDF, deterministic source bundle, release checksums, immutable tag, hosted CI, GitHub release, Zenodo publication, and public download verification gates passed. The exact global value remains open, and no external mathematical review is claimed.",
+  "archival_patch_decision": "published"
 }

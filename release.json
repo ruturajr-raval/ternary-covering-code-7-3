@@ -1,6 +1,6 @@
 {
   "version": "0.2.1",
-  "release_status": "prepared",
+  "release_status": "published",
   "release_date": "2026-09-07",
   "artifact_status": "verified_scoped_structural_exclusion_with_paper_inclusive_archival_patch",
   "supported_claim": "For each of eight seven-word subcores obtained from the explicit core C0, every set of at most four added centers leaves at least six radius-3 holes, and equality is attained. Hence no size-at-most-11 covering code contains any of these subcores or an isometric copy.",
@@ -8,7 +8,7 @@
   "new_result_status": "seven_word_subcore_exclusions_and_six_hole_plateau",
   "artifact_reproducibility_ready": true,
   "artifact_release_ready": true,
-  "technical_report_release_status": "paper_inclusive_patch_prepared",
+  "technical_report_release_status": "published",
   "external_review_status": "No external mathematical review is claimed.",
   "technical_report": {
     "title": "Seven-Word Subcore Exclusions and a Six-Hole Plateau in the Ternary Covering Problem K_3(7,3)",
@@ -23,6 +23,7 @@
       "force_source_date": true
     },
     "release_tag": "v0.2.1",
+    "release_commit": "3f1f1baf1f9a18944deaed555a241b90f683b7ec",
     "github_release": "https://github.com/ruturajr-raval/ternary-covering-code-7-3/releases/tag/v0.2.1",
     "underlying_mathematical_release": {
       "tag": "v0.2.0",
@@ -66,9 +67,14 @@
       "sha256": "6cea2392f585cb91f7a8d30a6934755e5da5c0244056938f3d48e1bc1501e2d0"
     },
     "previous_v0_2_0_ci": {
-      "workbench_release_candidate": 34002501318,
+      "candidate_ci": 34002501318,
       "public_main": 34008201113,
       "public_tag": 34008995117
+    },
+    "v0_2_1_ci": {
+      "candidate_ci": 34149337316,
+      "public_main": 34150876791,
+      "public_tag": 34150877158
     },
     "claim_scope": "complete scoped structural exclusion with unchanged global interval",
     "patch_scope": "Archival and documentation patch adding an explicit compiled PDF, deterministic paper-source archive, and SHA256SUMS. The theorem, proof, certificates, retained data, exact counts, and computations are unchanged."
@@ -82,7 +88,10 @@
     "all_deletion_orbits_covered": true,
     "all_exact_counts_match_between_implementations": true,
     "local_index_manifest_replay_passes": true,
-    "published_v0_2_1_archive_replay_passes": false,
+    "published_v0_2_1_archive_replay_passes": true,
+    "public_release_created": true,
+    "zenodo_record_updated_with_paper": true,
+    "public_release_assets_downloaded_and_verified": true,
     "pdf_pages_reviewed": 10
   },
   "limitations": [
